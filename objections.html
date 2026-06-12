@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Objection Handling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li><a href="products.html">Products &amp; Pricing</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section style="padding: 140px 0 60px; background: var(--dark-2);">
+  <div class="container">
+    <div class="section-label">Field Guide</div>
+    <h1 class="section-title">Objection <span class="grad-text">Response Guide</span></h1>
+    <p class="section-sub">Every objection you will hear in the field — with a direct, confident response. Review before any meeting.</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- OBJECTION HANDLING TABLE -->
+<section id="objections" style="padding: 60px 0 120px; background: var(--dark);">
+  <div class="container">
+    <div class="objection-wrap">
+      <div style="overflow:hidden;border-radius:8px;border:1px solid var(--border);">
+        <table class="objection-table">
+          <thead>
+            <tr>
+              <th style="width:35%">Objection</th>
+              <th>Your Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="obj-q">"We already have a supplier."</td>
+              <td class="obj-a">"We're not asking you to switch — just to add a locally packed backup. One call when your current supplier delays."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"We're not taking new suppliers."</td>
+              <td class="obj-a">"I'm only asking for 20 minutes, not a commitment. After that, the decision is entirely yours."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"Send me some information."</td>
+              <td class="obj-a">"Happy to — before I do, what are your top two patient indications? I'll make sure what I send is actually relevant."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"Your product is not TGA registered."</td>
+              <td class="obj-a">"Correct — no cannabis flower is ARTG registered in Australia. All products including your current supplier operate under SAS-B and AP prescribing pathways. Our TGO93 compliance is equivalent to any other supplier on the market."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"We don't know your brand."</td>
+              <td class="obj-a">"That's exactly why I'm here. I'm not asking for blind trust — I'm asking for a 30-day trial. The COA and GMP documentation will tell you everything about our quality."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"Your product is grown in Thailand — is that an issue?"</td>
+              <td class="obj-a">"Not under TGA import regulations. The TGA evaluates imported cannabis on GMP equivalence and TGO93 compliance — not country of origin. Our import licence and COA documentation confirm we meet every requirement."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"What if you run out of stock?"</td>
+              <td class="obj-a">"We hold buffer stock at our Perth packing facility specifically to prevent that. Because we pack in Perth, we have physical stock on the ground in WA ready for same-day dispatch — unlike interstate suppliers who depend entirely on their supply chain."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"Your pricing is too high."</td>
+              <td class="obj-a">"Let me send you a detailed comparison that factors in WA freight costs from the Eastern States. Once you account for that, our landed cost is very competitive. Can I follow up with that breakdown today?"</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"We need head office approval."</td>
+              <td class="obj-a">"Of course. What documentation does your head office need to evaluate a new supplier? I'll prepare a specific pack so the review is as straightforward as possible for them."</td>
+            </tr>
+            <tr>
+              <td class="obj-q">"We're too busy right now."</td>
+              <td class="obj-a">"Completely understand. When would be a better time — would [specific date two weeks out] work to revisit this?"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(10,14,20,0.97)';
+  } else {
+    nav.style.background = 'rgba(10,14,20,0.85)';
+  }
+});
+// ── MORE NAV DROPDOWN ──
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

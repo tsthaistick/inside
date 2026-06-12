@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Products & Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     PRICING CALCULATOR
+══════════════════════════════ -->
+<section id="pricing" style="padding: 140px 0 120px; background: var(--dark);">
+  <div class="container">
+    <div class="section-label">Wholesale Pricing</div>
+    <h2 class="section-title">Product Pricing Schedule. <span class="grad-text">Direct to Clinic / Pharmacy.</span></h2>
+    <p class="section-sub">Adjust any global input and all margins recalculate automatically. Confidential — internal use only.</p>
+    <div class="divider"></div>
+
+    <!-- Tier Tabs -->
+    <div class="tier-tabs" style="margin-top:40px;">
+      <button class="tier-tab active" onclick="switchTier('value',this)">Value Tier</button>
+      <button class="tier-tab" onclick="switchTier('premium',this)">Premium Tier</button>
+    </div>
+
+    <!-- Global Inputs -->
+    <div class="gi-box">
+      <div class="gi-box-title">A. Global Inputs</div>
+      <div class="gi-grid">
+        <div class="gi-field">
+          <div class="gi-label">Our Price ($/g)</div>
+          <input class="gi-input" type="number" id="gi-price" value="2.50" min="0" step="0.01" oninput="onPriceInput()">
+        </div>
+        <div class="gi-field">
+          <div class="gi-label">Jar Size (grams)</div>
+          <input class="gi-input" type="number" id="gi-jar" value="15" min="1" step="1" oninput="onJarInput()">
+        </div>
+        <div class="gi-field">
+          <div class="gi-label">Cost per Jar ($)</div>
+          <input class="gi-input" type="number" id="gi-costjar" value="37.50" min="0" step="0.01" oninput="onCostJarInput()">
+        </div>
+        <div class="gi-field">
+          <div class="gi-label">Carton (pcs)</div>
+          <input class="gi-input" type="number" id="gi-carton" value="12" min="1" step="1" oninput="calcPricing()">
+        </div>
+        <div class="gi-field">
+          <div class="gi-label">RSP (per jar)</div>
+          <input class="gi-input" type="number" id="gi-rsp" value="99.00" min="0" step="0.01" oninput="calcPricing()">
+        </div>
+        <div class="gi-field">
+          <div class="gi-label">Doctor/Clinic</div>
+          <input class="gi-input" type="number" id="gi-doctor" value="30.00" min="0" step="0.01" oninput="calcPricing()">
+        </div>
+        <div class="gi-field">
+          <div class="gi-label">Pharmacy Margin</div>
+          <input class="gi-input" type="number" id="gi-pharma" value="30.00" min="0" step="0.01" oninput="calcPricing()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Schedule Table -->
+    <div class="ps-wrap">
+      <div class="ps-outer-scroll">
+        <div class="ps-section-title">Product Pricing Schedule — Direct to Clinic / Pharmacy</div>
+        <table class="ps-table" style="border-bottom: 1px solid var(--border);">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Category</th>
+              <th>Our Price<br>(per gram)</th>
+              <th>Buyer Cost<br>(per jar)</th>
+              <th>Total<br>volume(g)</th>
+              <th>Pharmacy<br>Margin</th>
+              <th>Doctor / Clinic<br>Incentive</th>
+              <th>Patient RSP<br>(per jar)</th>
+            </tr>
+          </thead>
+          <tbody id="ps-jar-body"></tbody>
+        </table>
+        <table class="ps-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Volume Profile</th>
+              <th>Our Price</th>
+              <th>Buyer Cost</th>
+              <th>Total<br>volume(g)</th>
+              <th>Pharmacy<br>Margin</th>
+              <th>Doctor / Clinic<br>Incentive</th>
+              <th>Patient RSP<br>(per jar)</th>
+            </tr>
+          </thead>
+          <tbody id="ps-carton-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<!-- LOG VISIT BUTTON -->
+<button class="log-visit-fab" onclick="openLogModal()">
+  <span class="fab-icon">+</span>
+  <span class="fab-label">Log Visit</span>
+</button>
+
+<!-- LOG VISIT MODAL -->
+<div class="modal-overlay" id="log-overlay" onclick="closeLogOutside(event)">
+  <div class="modal log-modal">
+    <button class="log-close-btn" onclick="closeLogModal()">✕</button>
+    <div class="log-modal-title">Log Client Visit</div>
+    <form id="log-form" onsubmit="submitLog(event)">
+      <div class="log-form-grid">
+        <div class="log-field">
+          <label class="form-label">Your Name (Rep)</label>
+          <input class="form-input" name="rep_name" required placeholder="e.g. James">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Clinic / Pharmacy Name</label>
+          <input class="form-input" name="clinic_name" required placeholder="e.g. Perth Wellness Clinic">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Contact Name</label>
+          <input class="form-input" name="contact_name" placeholder="e.g. Dr. Sarah Lee">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" name="email" placeholder="e.g. s.lee@clinic.com">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Contact Number</label>
+          <input class="form-input" name="contact_number" placeholder="e.g. 0412 000 111">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Outcome</label>
+          <select class="form-select" name="outcome">
+            <option value="">Select outcome</option>
+            <option>Follow up</option>
+            <option>Pending approval</option>
+            <option>Sample requested</option>
+            <option>Agreement sent</option>
+            <option>Not interested</option>
+          </select>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Next Meeting Date</label>
+          <input class="form-input" type="date" name="next_meeting_date">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Next Meeting Time</label>
+          <input class="form-input" type="time" name="next_meeting_time">
+        </div>
+      </div>
+      <div class="log-field" style="margin-top:16px;">
+        <label class="form-label">Interested SKUs</label>
+        <div class="sku-check-grid" id="sku-check-container">
+          <div style="color:var(--muted);font-size:12px;grid-column:1/-1;">Loading SKUs…</div>
+        </div>
+        <div id="sku-limit-msg" style="display:none;font-size:11px;color:var(--amber);margin-top:6px;">Max 3 SKUs selected</div>
+      </div>
+      <div class="log-field" style="margin-top:16px;">
+        <label class="form-label">Notes</label>
+        <textarea class="form-textarea" name="notes" placeholder="Meeting notes, objections raised, key discussion points..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit" id="log-submit-btn" style="margin-top:24px;">Save Visit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// ── PRICING SCHEDULE CALCULATOR ──
+const TIER_DEFAULTS = {
+  value:   { price: 2.50, jar: 15, carton: 12, rsp: 99.00,  doctor: 30.00, pharma: 30.00 },
+  premium: { price: 3.50, jar: 15, carton: 12, rsp: 150.00, doctor: 40.00, pharma: 40.00 },
+};
+let currentTier = 'value';
+let portfolioData = [];
+
+function switchTier(tier, btn) {
+  currentTier = tier;
+  document.querySelectorAll('.tier-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const d = TIER_DEFAULTS[tier];
+  document.getElementById('gi-price').value = d.price.toFixed(2);
+  document.getElementById('gi-jar').value = d.jar;
+  document.getElementById('gi-costjar').value = (d.price * d.jar).toFixed(2);
+  document.getElementById('gi-carton').value = d.carton;
+  document.getElementById('gi-rsp').value = d.rsp.toFixed(2);
+  document.getElementById('gi-doctor').value = d.doctor.toFixed(2);
+  document.getElementById('gi-pharma').value = d.pharma.toFixed(2);
+  calcPricing();
+}
+
+function onPriceInput() {
+  const price = parseFloat(document.getElementById('gi-price').value) || 0;
+  const jar   = parseFloat(document.getElementById('gi-jar').value) || 15;
+  document.getElementById('gi-costjar').value = (price * jar).toFixed(2);
+  calcPricing();
+}
+
+function onCostJarInput() {
+  const costJar = parseFloat(document.getElementById('gi-costjar').value) || 0;
+  const jar     = parseFloat(document.getElementById('gi-jar').value) || 15;
+  document.getElementById('gi-price').value = jar > 0 ? (costJar / jar).toFixed(2) : '0.00';
+  calcPricing();
+}
+
+function onJarInput() {
+  const price = parseFloat(document.getElementById('gi-price').value) || 0;
+  const jar   = parseFloat(document.getElementById('gi-jar').value) || 15;
+  document.getElementById('gi-costjar').value = (price * jar).toFixed(2);
+  calcPricing();
+}
+
+function calcPricing() {
+  const price   = parseFloat(document.getElementById('gi-price').value) || 0;
+  const jar     = parseFloat(document.getElementById('gi-jar').value) || 15;
+  const carton  = parseFloat(document.getElementById('gi-carton').value) || 12;
+  const rsp     = parseFloat(document.getElementById('gi-rsp').value) || 0;
+  const doctor  = parseFloat(document.getElementById('gi-doctor').value) || 0;
+  const pharma  = parseFloat(document.getElementById('gi-pharma').value) || 0;
+  const costJar = price * jar;
+  const label   = currentTier === 'value' ? 'Value' : 'Premium';
+  const f = v => {
+    const abs = Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return (v < 0 ? '−$' : '$') + abs;
+  };
+  const fv = v => v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + 'g';
+
+  document.getElementById('ps-jar-body').innerHTML = `
+    <tr>
+      <td class="ps-tier">${label}</td>
+      <td class="ps-cat">Jar</td>
+      <td class="ps-our-price">${f(price)}</td>
+      <td>${f(costJar)}</td>
+      <td>${fv(jar)}</td>
+      <td class="ps-pharma">${f(pharma)}</td>
+      <td>${f(doctor)}</td>
+      <td class="ps-rsp">${f(rsp)}</td>
+    </tr>`;
+
+  const volRows = [
+    { name: `Carton (${Math.round(carton)} jars)`, n: carton },
+    { name: '300 Jars', n: 300 },
+    { name: '500 Jars', n: 500 },
+    { name: '1,000 Jars', n: 1000 },
+  ];
+  document.getElementById('ps-carton-body').innerHTML = volRows.map((row, i) => {
+    const totalVol   = jar * row.n;
+    const ourPrice   = price * totalVol;
+    const buyerCost  = ourPrice;
+    const pharmTotal = pharma * row.n;
+    const docTotal   = doctor * row.n;
+    const rspCell    = i === 0
+      ? `<td class="ps-rsp" rowspan="4" style="vertical-align:middle;text-align:center;">${f(rsp)}</td>`
+      : '';
+    return `
+    <tr>
+      <td class="ps-tier">${label}</td>
+      <td class="ps-cat">${row.name}</td>
+      <td class="ps-our-price">${f(ourPrice)}</td>
+      <td>${f(buyerCost)}</td>
+      <td>${fv(totalVol)}</td>
+      <td class="ps-pharma">${f(pharmTotal)}</td>
+      <td>${f(docTotal)}</td>
+      ${rspCell}
+    </tr>`;
+  }).join('');
+}
+
+const skuData = {
+  trop: {
+    name: 'Trop Cherry BX1', ind: 'Sleep', indClass: 'ind-sleep',
+    thc: '16.59%', cbd: '0.77%',
+    terpenes: [
+      { name: 'Myrcene', effect: 'Sedating · muscle relaxation' },
+      { name: 'Caryophyllene', effect: 'Anti-inflammatory · calming' },
+      { name: 'Linalool', effect: 'Anxiolytic · sleep promotion' },
+    ],
+    indications: [
+      { primary: 'Primary — Sleep Disorders', detail: 'Insomnia, difficulty maintaining sleep, disrupted sleep architecture' },
+      { primary: 'Secondary — Anxiety (sleep-related)', detail: 'Anxiety-driven sleep disruption and hyperarousal' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients presenting with primary insomnia or sleep maintenance difficulties. Suitable for evening use.',
+  },
+  runtz: {
+    name: 'Runtz Mints', ind: 'Pain', indClass: 'ind-pain',
+    thc: '19.57%', cbd: '0.82%',
+    terpenes: [
+      { name: 'Limonene', effect: 'Analgesic · mood elevation' },
+      { name: 'Myrcene', effect: 'Analgesic · anti-inflammatory' },
+      { name: 'Pinene', effect: 'Anti-inflammatory · alertness' },
+    ],
+    indications: [
+      { primary: 'Primary — Acute and Chronic Pain', detail: 'Nociceptive and neuropathic pain presentations' },
+      { primary: 'Secondary — Inflammation', detail: 'Inflammatory pain conditions and musculoskeletal presentations' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with moderate to severe pain presentations. Suitable for daytime or evening use depending on patient tolerance.',
+  },
+  maui: {
+    name: 'Maui Wowie 2.0', ind: 'Chronic Pain', indClass: 'ind-pain',
+    thc: '19.12%', cbd: '0.77%',
+    terpenes: [
+      { name: 'Terpinolene', effect: 'Analgesic · uplifting' },
+      { name: 'Ocimene', effect: 'Anti-inflammatory · decongestant' },
+      { name: 'Myrcene', effect: 'Sedating · analgesic' },
+    ],
+    indications: [
+      { primary: 'Primary — Chronic Pain', detail: 'Persistent and long-duration pain conditions requiring ongoing management' },
+      { primary: 'Secondary — Neuropathic Pain', detail: 'Nerve-related pain presentations and conditions' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with long-standing chronic pain who require consistent, sustained relief with daytime functionality maintained.',
+  },
+  prize: {
+    name: 'Prizefighter', ind: 'Anxiety', indClass: 'ind-anxiety',
+    thc: '19.61%', cbd: '0.83%',
+    terpenes: [
+      { name: 'Caryophyllene', effect: 'Anxiolytic · anti-inflammatory' },
+      { name: 'Linalool', effect: 'Calming · stress reduction' },
+      { name: 'Limonene', effect: 'Mood elevation · anti-anxiety' },
+    ],
+    indications: [
+      { primary: 'Primary — Generalised Anxiety', detail: 'GAD, social anxiety, and stress-related anxiety presentations' },
+      { primary: 'Secondary — PTSD', detail: 'Anxiety and hyperarousal components of PTSD presentations' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with anxiety-spectrum presentations. Anxiolytic terpene profile supports daytime use without excessive sedation.',
+  },
+  dafunk: {
+    name: 'Da Funk', ind: 'Depression / ADHD', indClass: 'ind-depression',
+    thc: '21.20%', cbd: '0.22%',
+    terpenes: [
+      { name: 'Limonene', effect: 'Antidepressant · mood elevation' },
+      { name: 'Terpinolene', effect: 'Uplifting · focus support' },
+      { name: 'Ocimene', effect: 'Energising · anti-fatigue' },
+    ],
+    indications: [
+      { primary: 'Primary — Depression', detail: 'MDD and depressive episodes, low mood, and anhedonia presentations' },
+      { primary: 'Secondary — ADHD', detail: 'Attention-related presentations and executive function difficulties' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with depressive or attention-related presentations. Uplifting terpene profile supports daytime use and functional improvement.',
+  },
+  tropical: {
+    name: 'Tropical Blues', ind: 'Highest THC · Premium', indClass: 'ind-premium',
+    thc: '27.23%', cbd: '0.20%',
+    terpenes: [
+      { name: 'Myrcene', effect: 'Potency amplification · sedating' },
+      { name: 'Caryophyllene', effect: 'Anti-inflammatory · analgesic' },
+      { name: 'Limonene', effect: 'Mood modulation · anti-anxiety' },
+    ],
+    indications: [
+      { primary: 'Primary — Treatment-Resistant Presentations', detail: 'Patients who have not responded adequately to lower-potency products' },
+      { primary: 'Secondary — High-Tolerance Patients', detail: 'Established medicinal cannabis patients with documented tolerance' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Experienced medicinal cannabis patients with demonstrated tolerance. Prescriber assessment recommended. Highest THC product in the Thai Stick portfolio.',
+  },
+};
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(10,14,20,0.97)';
+  } else {
+    nav.style.background = 'rgba(10,14,20,0.85)';
+  }
+});
+// ── GOOGLE SHEETS INTEGRATION ──
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzha6ED7R4JqAXq0AqoBk1bndu0hJwDbyBrzJQawB093HvwGZT7fUQZ9cP7JzYGpPucEA/exec';
+
+function fetchSheet(sheetName) {
+  return new Promise((resolve, reject) => {
+    const cb = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    window[cb] = (data) => { delete window[cb]; document.head.removeChild(script); resolve(data); };
+    script.src = `${APPS_SCRIPT_URL}?sheet=${sheetName}&callback=${cb}`;
+    script.onerror = () => { delete window[cb]; reject(new Error('Failed')); };
+    document.head.appendChild(script);
+  });
+}
+
+
+let skusLoaded = false;
+function openLogModal() {
+  document.getElementById('log-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (!skusLoaded) { skusLoaded = true; loadSKUs(); }
+}
+function closeLogModal() {
+  document.getElementById('log-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLogOutside(e) {
+  if (e.target === document.getElementById('log-overlay')) closeLogModal();
+}
+
+async function submitLog(e) {
+  e.preventDefault();
+  const form = document.getElementById('log-form');
+  const btn = document.getElementById('log-submit-btn');
+  const skus = [...document.querySelectorAll('.sku-check:checked')].map(c => c.value).join(', ');
+  const data = {
+    rep_name: form.rep_name.value,
+    clinic_name: form.clinic_name.value,
+    contact_name: form.contact_name.value,
+    email: form.email.value,
+    contact_number: form.contact_number.value,
+    interested_sku: skus,
+    next_meeting_date: form.next_meeting_date.value,
+    next_meeting_time: form.next_meeting_time.value,
+    notes: form.notes.value,
+    outcome: form.outcome.value,
+  };
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    form.reset();
+    document.querySelectorAll('.sku-check').forEach(c => { c.checked = false; c.disabled = false; });
+    document.getElementById('sku-limit-msg').style.display = 'none';
+    btn.textContent = 'Saved ✓';
+    setTimeout(() => { closeLogModal(); btn.textContent = 'Save Visit'; btn.disabled = false; }, 1500);
+  } catch(err) {
+    btn.textContent = 'Error — Try Again';
+    btn.disabled = false;
+  }
+}
+
+async function loadSKUs() {
+  const container = document.getElementById('sku-check-container');
+  if (!container) return;
+  let names = [];
+  try {
+    const skus = await fetchSheet('SKUs');
+    if (skus && !skus.error && skus.length) {
+      names = skus.map(s => s.name).filter(Boolean);
+    }
+  } catch(e) {}
+  if (!names.length) {
+    names = ['Trop Cherry BX1','Runtz Mints','Maui Wowie 2.0','Prizefighter','Da Funk','Tropical Blues'];
+  }
+  container.innerHTML = names.map(n => `
+    <label class="sku-check-item">
+      <input type="checkbox" class="sku-check" value="${n}" onchange="enforceSkuLimit()">
+      ${n}
+    </label>`).join('');
+}
+
+function enforceSkuLimit() {
+  const all = document.querySelectorAll('.sku-check');
+  const checked = [...all].filter(c => c.checked);
+  const msg = document.getElementById('sku-limit-msg');
+  if (checked.length >= 3) {
+    all.forEach(c => { if (!c.checked) c.disabled = true; });
+    if (msg) msg.style.display = 'block';
+  } else {
+    all.forEach(c => c.disabled = false);
+    if (msg) msg.style.display = 'none';
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tier = new URLSearchParams(window.location.search).get('tier');
+  if (tier === 'premium') {
+    const btn = document.querySelector('.tier-tab:last-child');
+    if (btn) switchTier('premium', btn);
+  } else {
+    calcPricing();
+  }
+});
+
+function toggleTierNav() {
+  document.getElementById('nav-tier-menu').classList.toggle('open');
+}
+// ── MORE NAV DROPDOWN ──
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('.nav-tier-pick')) {
+    const t = document.getElementById('nav-tier-menu');
+    if (t) t.classList.remove('open');
+  }
+  if (!e.target.closest('nav')) {
+    document.querySelector('nav').classList.remove('nav-open');
+  }
+});
+</script>
+</body>
+</html>

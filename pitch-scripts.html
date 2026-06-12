@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Pitch Scripts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--dark);">
+  <div class="container">
+    <div class="section-label">Internal Reference</div>
+    <h2 class="section-title">Pitch <span class="grad-text">Scripts</span></h2>
+    <p class="section-sub">Cold Call · Email · In-Person &nbsp;×&nbsp; Pharmacy · Doctor / Clinic · Wholesale</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section style="padding: 40px 0 120px; background: var(--dark-2);">
+  <div class="container">
+
+    <!-- Ground Rules -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;">Ground Rules — Apply to Every Interaction</div>
+      <div class="step-card">
+        <div class="step-title" style="margin-bottom:16px;">Rules</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <span class="rule-tag" style="flex-shrink:0;">One Job Per Interaction</span>
+            <span class="step-body">Cold call → book a meeting only. Email → get a reply or call only. Meeting → trial order or confirmed next step. Never pitch product on a cold call.</span>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <span class="rule-tag" style="flex-shrink:0;">Lead with Their Problem</span>
+            <span class="step-body">Before showing any SKU, ask what frustrates them about their current supply. Stockouts? Slow delivery? Bad paperwork? Find the pain — then present Thai Stick as the solution.</span>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <span class="rule-tag" style="flex-shrink:0;">Speak Their Language</span>
+            <span class="step-body">Pharmacy: delivery speed, S8 docs, margin. Doctor: indication, terpene profile, COA, patient outcome. Wholesale: supply chain risk, GMP documentation, commercial terms.</span>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <span class="rule-tag" style="flex-shrink:0;">One-Sentence Story</span>
+            <span class="step-body">"Thai Stick cultivates pharmaceutical-grade cannabis flower in Thailand, imports into our GMP-certified facility in Perth, and distributes across Australia."</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cold Calls -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;">Cold Calls</div>
+
+      <!-- 1A Pharmacy -->
+      <div class="step-card" style="margin-bottom:16px;">
+        <div class="step-num">1A — Cold Call to Pharmacy</div>
+        <div class="step-title">Audience: Pharmacy / Dispensary</div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Objective</span>
+          <p class="step-body" style="margin-top:8px;">Reach Dispensary Manager or Pharmacist-in-Charge. Book a 20-minute in-person meeting. Target call length: 90 seconds to 3 minutes.</p>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Script</span>
+          <div class="script-block">[Front counter answers]
+"Hi, good morning. My name is [Name], calling from Thai Stick — we're a GMP-certified medicinal cannabis supplier. Could I please speak with your Dispensary Manager or Pharmacist-in-Charge?"
+
+[If asked what it's regarding]
+"It's regarding our medicinal cannabis flower supply range. We're a Perth-based packing and distribution operation. It'll only take two minutes."
+
+[When decision-maker answers]
+"Hi [Name], thank you for taking my call — I'll keep this very brief. My name is [Name] from Thai Stick. We import pharmaceutical-grade cannabis flower from our cultivation facility in Thailand to our own GMP-certified facility here in Perth. I'd love to come in for 20 minutes at a time that suits you. Would sometime this week or next work?"</div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Key Rules</span>
+          <p class="step-body" style="margin-top:8px;">Never mention price on a cold call. Always end by confirming meeting date/time.</p>
+        </div>
+        <div class="obj-card" style="margin-bottom:10px;">
+          <div class="obj-q">✗ Objection: "We already have a supplier."</div>
+          <div class="obj-a">That's great — we're not asking you to switch. We're asking for 20 minutes to show you our range. Having a local Perth backup when your current supplier delays is genuinely useful. Would that be worth a quick conversation?</div>
+        </div>
+        <div style="margin-top:12px;">
+          <span class="rule-tag">The Close</span>
+          <p class="step-body" style="margin-top:8px;">Perfect — I'll come in to [pharmacy name] on [day] at [time]. I'll bring our product range and COA documentation. Could I grab your email to send a quick calendar confirmation?</p>
+        </div>
+      </div>
+
+      <!-- 1B Doctor/Clinic -->
+      <div class="step-card">
+        <div class="step-num">1B — Cold Call to Doctor / Clinic</div>
+        <div class="step-title">Audience: Doctor / Cannabis Clinic</div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Objective</span>
+          <p class="step-body" style="margin-top:8px;">Reach Practice Manager or Medical Director. Book a 20-minute clinical briefing or lunch-and-learn session. Never ask to speak to the doctor directly — they are with patients.</p>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Script</span>
+          <div class="script-block">[Receptionist answers]
+"Good morning — my name is [Name] from Thai Stick, we're a medicinal cannabis supplier. Could I please speak with your Practice Manager or Medical Director regarding our clinical product range?"
+
+[When Practice Manager answers]
+"Hi [Name], I'll keep this brief. My name is [Name] from Thai Stick. We cultivate pharmaceutical-grade cannabis flower in Thailand, import to our GMP-certified facility in Perth. We've developed a six-SKU flower range where every product is terpene-profiled and clinically positioned against — chronic pain, anxiety, sleep disorder, PTSD, depression, and ADHD. I'd love to come in for a 20-minute clinical briefing — or if your prescribers do lunch sessions, I'm happy to bring lunch and run a brief clinical walkthrough. Would either of those work?"</div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Key Rules</span>
+          <p class="step-body" style="margin-top:8px;">Always go through Practice Manager — never the doctor directly. Say 'clinical briefing' not 'sales visit'. Offer lunch-and-learn — standard in Australian medical sales. Never mention price.</p>
+        </div>
+        <div class="obj-card" style="margin-bottom:10px;">
+          <div class="obj-q">✗ Objection: "We don't take meetings with suppliers."</div>
+          <div class="obj-a">I completely respect that — this isn't a traditional sales pitch. It's a 20-minute clinical walkthrough of how our terpene profiles map to specific patient indications. Would a brief informal lunch session work — no obligation at all?</div>
+        </div>
+        <div style="margin-top:12px;">
+          <span class="rule-tag">The Close</span>
+          <p class="step-body" style="margin-top:8px;">Excellent — I'll come in on [day] at [time] for a 20-minute clinical briefing. Should I bring lunch for your team, or would you prefer a straight product meeting? Who should I ask for when I arrive?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- In-Person -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;">In-Person Meetings</div>
+
+      <!-- 3A Pharmacy -->
+      <div class="step-card" style="margin-bottom:16px;">
+        <div class="step-num">3A — In-Person: Pharmacy</div>
+        <div class="step-title">Audience: Pharmacy / Dispensary</div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Objective</span>
+          <p class="step-body" style="margin-top:8px;">Present business case. Handle objections. Secure trial order commitment before leaving the room.</p>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Script</span>
+          <div class="script-block">OPENING (2 min): Do not open product folder immediately. Ask first:
+"Before I show you what we've got — what does your current supply arrangement look like for cannabis flower? Specifically around reliability and lead times?"
+
+MIDDLE (10–12 min): Sequence:
+1. Acknowledge their pain: "That's consistent with what a lot of WA dispensaries tell us."
+2. Thai Stick model (3 sentences): Import from Thailand, Perth GMP, 24hr WA delivery.
+3. Show 2–3 SKUs matched to their patient indications. COA for lead SKU.
+4. Walk through S8 logistics: chain-of-custody, ScriptCheckWA docs included with every delivery.
+5. Pricing: never volunteer it. Wait until they ask. Then: "I'll send a formal pricing sheet after this meeting so you can compare apples to apples."
+
+READING THE ROOM: Leaning forward + questions = move to close. Leaning back + short answers = slow down, ask open question: "Is there something specific you'd need to see that I haven't shown you yet?"</div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Key Rules</span>
+          <p class="step-body" style="margin-top:8px;">Arrive exactly on time. Respect the agreed time. Listen 60% of the time. Take notes. Never use high-pressure tactics. Never give verbal prices in first meeting.</p>
+        </div>
+        <div class="obj-card" style="margin-bottom:10px;">
+          <div class="obj-q">✗ Objection: "Your product is not something our patients have asked for."</div>
+          <div class="obj-a">That's often because it hasn't been prescribed yet — patient demand follows prescriber behaviour. Would it help if I followed up with the clinics that refer to your pharmacy to introduce our clinical range?</div>
+        </div>
+        <div style="margin-top:12px;">
+          <span class="rule-tag">The Close</span>
+          <p class="step-body" style="margin-top:8px;">"Based on what you've shared — I think a trial order of two or three SKUs would be a sensible starting point. 30 days, no long-term commitment. Would you be comfortable moving forward with that?" If yes — take the order on the spot. If not yet — confirm specific reason and hard next step with a date.</p>
+        </div>
+      </div>
+
+      <!-- 3B Doctor/Clinic -->
+      <div class="step-card">
+        <div class="step-num">3B — In-Person: Doctor / Clinic</div>
+        <div class="step-title">Audience: Doctor / Cannabis Clinic</div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Objective</span>
+          <p class="step-body" style="margin-top:8px;">Build clinical credibility. Match SKUs to patient indications. Get commitment to trial one or two products with 2–3 patients over 30 days.</p>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Script</span>
+          <div class="script-block">OPENING:
+"Thank you for making time — I'll keep to the 20 minutes I asked for. Before I walk through our range, could I ask — across your patient cohort right now, what are the top 2–3 indications where you're finding cannabis most clinically useful or where you're still looking for better options?"
+
+CLINICAL BRIDGE (based on their answer):
+• Chronic pain   → MAUI WOWIE 2.0 (score 0.71, Beta-Caryophyllene dominant)
+• Anxiety        → PRIZEFIGHTER (score 0.64, Linalool dominant)
+• Sleep          → TROP CHERRY BX1 (score 0.42, Myrcene dominant — 16.59% THC, ideal for new patients)
+• PTSD           → RUNTZ MINTS (score 0.37) or PRIZEFIGHTER
+• ADHD           → DA FUNK (score 0.30, Alpha-Pinene + Limonene)
+• Migraine       → PRIZEFIGHTER (score 0.66 — strongest migraine SKU)
+
+Show COA alongside terpene-symptom matrix. Walk through it methodically.</div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <span class="rule-tag">Key Rules</span>
+          <p class="step-body" style="margin-top:8px;">Australian doctors value evidence and directness. Position yourself as a clinical resource, not a sales rep. Calm, peer-level, evidence-based is the winning tone.</p>
+        </div>
+        <div class="obj-card" style="margin-bottom:10px;">
+          <div class="obj-q">✗ Objection: "Can you make therapeutic claims about this product?"</div>
+          <div class="obj-a">In the strict regulatory sense, no — ARTG registration is required for formal therapeutic claims and no cannabis flower has that. We present terpene research data and COA. The prescribing decision is entirely yours based on your clinical judgment.</div>
+        </div>
+        <div style="margin-top:12px;">
+          <span class="rule-tag">The Close</span>
+          <p class="step-body" style="margin-top:8px;">"Based on what you've told me — would you be comfortable trialling Maui Wowie 2.0 with two or three of your chronic pain patients over 30 days? I'll make sure your preferred pharmacy has stock ready, and I'll follow up in four weeks to hear how it went clinically. No obligation beyond that."</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTierNav() { document.getElementById('nav-tier-menu').classList.toggle('open'); }
+function toggleMoreNav() { document.getElementById('nav-more-menu').classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) { const m = document.getElementById('nav-more-menu'); if (m) m.classList.remove('open'); }
+  if (!e.target.closest('.nav-tier-pick')) { const t = document.getElementById('nav-tier-menu'); if (t) t.classList.remove('open'); }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

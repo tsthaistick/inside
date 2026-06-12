@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Visitor Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.dash-wrap {
+  max-width: 1200px; margin: 0 auto; padding: 104px 32px 64px;
+}
+.dash-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
+}
+.dash-title {
+  font-family: var(--font-disp); font-size: 32px; font-weight: 400; color: var(--light);
+}
+.dash-subtitle { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* Tabs */
+.dash-tabs {
+  display: flex; gap: 4px; background: var(--dark-2);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 4px; margin-bottom: 32px; width: fit-content;
+}
+.dash-tab {
+  padding: 9px 24px; border-radius: 6px; border: none;
+  background: transparent; color: var(--muted);
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+  transition: all 0.2s;
+}
+.dash-tab.active {
+  background: var(--grad); color: var(--dark);
+}
+.dash-tab:not(.active):hover { color: var(--light); }
+
+/* Stats cards */
+.stats-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px; margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--dark-2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px 24px;
+}
+.stat-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+}
+.stat-value {
+  font-family: var(--font-mono); font-size: 32px; font-weight: 500;
+  background: var(--grad-text); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* Table */
+.table-wrap {
+  background: var(--dark-2); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+}
+.table-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap;
+}
+.table-count { font-size: 13px; color: var(--muted); }
+.table-search {
+  background: var(--dark-3); border: 1px solid var(--border); border-radius: 6px;
+  color: var(--light); font-family: var(--font-body); font-size: 13px;
+  padding: 8px 14px; outline: none; width: 240px; transition: border-color 0.2s;
+}
+.table-search:focus { border-color: var(--teal); }
+.table-search::placeholder { color: var(--muted); }
+table {
+  width: 100%; border-collapse: collapse;
+}
+thead th {
+  padding: 12px 16px; text-align: left;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+  background: var(--dark-3); white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+tbody td {
+  padding: 12px 16px; font-size: 13px; color: var(--light-2);
+  max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+tbody td.ts { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.empty-state {
+  padding: 48px; text-align: center; color: var(--muted); font-size: 14px;
+}
+.loading-state {
+  padding: 48px; text-align: center; color: var(--muted); font-size: 13px;
+}
+
+/* Panel visibility */
+.dash-panel { display: none; }
+.dash-panel.active { display: block; }
+
+/* Refresh btn */
+.btn-refresh {
+  background: transparent; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--muted); font-family: var(--font-body); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 16px;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.btn-refresh:hover { border-color: var(--teal); color: var(--teal); }
+.btn-refresh.spin svg { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>
+        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="dash-wrap">
+  <div class="dash-header">
+    <div>
+      <div class="dash-title">Visitor Dashboard</div>
+      <div class="dash-subtitle">Live data from TS Data spreadsheet</div>
+    </div>
+    <button class="btn-refresh" id="refresh-btn" onclick="loadAll()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      Refresh
+    </button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="dash-tabs">
+    <button class="dash-tab active" onclick="switchTab('visitors', this)">Visitor Log</button>
+    <button class="dash-tab" onclick="switchTab('enquiries', this)">Enquiries</button>
+  </div>
+
+  <!-- VISITOR LOG PANEL -->
+  <div class="dash-panel active" id="panel-visitors">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Visitors</div>
+        <div class="stat-value" id="stat-v-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unique Companies</div>
+        <div class="stat-value" id="stat-v-companies">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value" id="stat-v-week">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest Visitor</div>
+        <div class="stat-value" style="font-size:18px;margin-top:4px;" id="stat-v-latest">—</div>
+        <div class="stat-sub" id="stat-v-latest-co"></div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <div class="table-toolbar">
+        <span class="table-count" id="v-count">Loading…</span>
+        <input class="table-search" id="v-search" placeholder="Search name, company, email…" oninput="filterTable('visitors')">
+      </div>
+      <div id="v-table-body">
+        <div class="loading-state">Loading visitor data…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENQUIRIES PANEL -->
+  <div class="dash-panel" id="panel-enquiries">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Enquiries</div>
+        <div class="stat-value" id="stat-e-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Meetings Scheduled</div>
+        <div class="stat-value" id="stat-e-meetings">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value" id="stat-e-week">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unique Companies</div>
+        <div class="stat-value" id="stat-e-companies">—</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <div class="table-toolbar">
+        <span class="table-count" id="e-count">Loading…</span>
+        <input class="table-search" id="e-search" placeholder="Search name, company, email…" oninput="filterTable('enquiries')">
+      </div>
+      <div id="e-table-body">
+        <div class="loading-state">Loading enquiry data…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzha6ED7R4JqAXq0AqoBk1bndu0hJwDbyBrzJQawB093HvwGZT7fUQZ9cP7JzYGpPucEA/exec';
+
+// Guard — team only
+if (sessionStorage.getItem('access') !== 'team') {
+  window.location.href = 'index.html';
+}
+
+let visitorData = [];
+let enquiryData = [];
+
+function fetchSheet(sheetName) {
+  return new Promise((resolve, reject) => {
+    const cb = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    window[cb] = (data) => { delete window[cb]; document.head.removeChild(script); resolve(data); };
+    script.src = `${APPS_SCRIPT_URL}?sheet=${encodeURIComponent(sheetName)}&callback=${cb}`;
+    script.onerror = () => { delete window[cb]; reject(new Error('Failed')); };
+    document.head.appendChild(script);
+  });
+}
+
+function thisWeekCount(rows) {
+  const now = new Date();
+  const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
+  return rows.filter(r => {
+    const ts = r.timestamp ? new Date(r.timestamp) : null;
+    return ts && ts >= weekAgo;
+  }).length;
+}
+
+function fmtTs(val) {
+  if (!val) return '—';
+  const d = new Date(val);
+  if (isNaN(d)) return String(val).split('T')[0];
+  return d.toLocaleDateString('en-AU', { day: '2-digit', month: 'short', year: 'numeric' })
+    + ' ' + d.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' });
+}
+
+function fmtDate(val) {
+  if (!val) return '—';
+  const d = new Date(val);
+  if (isNaN(d)) return val;
+  return d.toLocaleDateString('en-AU', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+// ── VISITOR TABLE ──────────────────────────────────────────
+function renderVisitors(rows) {
+  const total = rows.length;
+  const companies = new Set(rows.map(r => (r.company || '').trim()).filter(Boolean)).size;
+  const week = thisWeekCount(rows);
+  const latest = rows[rows.length - 1];
+
+  document.getElementById('stat-v-total').textContent     = total;
+  document.getElementById('stat-v-companies').textContent = companies;
+  document.getElementById('stat-v-week').textContent      = week;
+  document.getElementById('stat-v-latest').textContent    = latest ? (latest.name || '—') : '—';
+  document.getElementById('stat-v-latest-co').textContent = latest ? (latest.company || '') : '';
+  document.getElementById('v-count').textContent          = `${total} record${total !== 1 ? 's' : ''}`;
+
+  renderVisitorTable(rows);
+}
+
+function renderVisitorTable(rows) {
+  const tbody = document.getElementById('v-table-body');
+  if (!rows.length) { tbody.innerHTML = '<div class="empty-state">No visitor records found.</div>'; return; }
+  tbody.innerHTML = `<table>
+    <thead><tr>
+      <th>Timestamp</th><th>Name</th><th>Company</th><th>Email</th><th>Phone</th>
+    </tr></thead>
+    <tbody>
+      ${rows.map(r => `<tr>
+        <td class="ts">${fmtTs(r.timestamp)}</td>
+        <td>${r.name || '—'}</td>
+        <td>${r.company || '—'}</td>
+        <td>${r.email || '—'}</td>
+        <td>${r.phone || '—'}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+// ── ENQUIRY TABLE ──────────────────────────────────────────
+function renderEnquiries(rows) {
+  const total     = rows.length;
+  const meetings  = rows.filter(r => r.meeting_date && String(r.meeting_date).trim()).length;
+  const week      = thisWeekCount(rows);
+  const companies = new Set(rows.map(r => (r.company || '').trim()).filter(Boolean)).size;
+
+  document.getElementById('stat-e-total').textContent     = total;
+  document.getElementById('stat-e-meetings').textContent  = meetings;
+  document.getElementById('stat-e-week').textContent      = week;
+  document.getElementById('stat-e-companies').textContent = companies;
+  document.getElementById('e-count').textContent          = `${total} record${total !== 1 ? 's' : ''}`;
+
+  renderEnquiryTable(rows);
+}
+
+function renderEnquiryTable(rows) {
+  const tbody = document.getElementById('e-table-body');
+  if (!rows.length) { tbody.innerHTML = '<div class="empty-state">No enquiry records found.</div>'; return; }
+  tbody.innerHTML = `<table>
+    <thead><tr>
+      <th>Timestamp</th><th>First Name</th><th>Last Name</th><th>Company</th>
+      <th>Email</th><th>Phone</th><th>Meeting Date</th><th>Message</th>
+    </tr></thead>
+    <tbody>
+      ${rows.map(r => `<tr>
+        <td class="ts">${fmtTs(r.timestamp)}</td>
+        <td>${r.first_name || '—'}</td>
+        <td>${r.last_name || '—'}</td>
+        <td>${r.company || '—'}</td>
+        <td>${r.email || '—'}</td>
+        <td>${r.phone || '—'}</td>
+        <td>${fmtDate(r.meeting_date)}</td>
+        <td title="${(r.message || '').replace(/"/g, '&quot;')}">${r.message ? r.message.slice(0, 60) + (r.message.length > 60 ? '…' : '') : '—'}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+// ── SEARCH / FILTER ────────────────────────────────────────
+function filterTable(type) {
+  if (type === 'visitors') {
+    const q = document.getElementById('v-search').value.toLowerCase();
+    const filtered = visitorData.filter(r =>
+      (r.name || '').toLowerCase().includes(q) ||
+      (r.company || '').toLowerCase().includes(q) ||
+      (r.email || '').toLowerCase().includes(q)
+    );
+    document.getElementById('v-count').textContent = `${filtered.length} of ${visitorData.length} record${visitorData.length !== 1 ? 's' : ''}`;
+    renderVisitorTable(filtered);
+  } else {
+    const q = document.getElementById('e-search').value.toLowerCase();
+    const filtered = enquiryData.filter(r =>
+      (r.first_name || '').toLowerCase().includes(q) ||
+      (r.last_name || '').toLowerCase().includes(q) ||
+      (r.company || '').toLowerCase().includes(q) ||
+      (r.email || '').toLowerCase().includes(q)
+    );
+    document.getElementById('e-count').textContent = `${filtered.length} of ${enquiryData.length} record${enquiryData.length !== 1 ? 's' : ''}`;
+    renderEnquiryTable(filtered);
+  }
+}
+
+// ── TAB SWITCH ─────────────────────────────────────────────
+function switchTab(tab, btn) {
+  document.querySelectorAll('.dash-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ── LOAD ALL ───────────────────────────────────────────────
+async function loadAll() {
+  const btn = document.getElementById('refresh-btn');
+  btn.classList.add('spin');
+
+  try {
+    const [visitors, enquiries] = await Promise.all([
+      fetchSheet('Visitor Log'),
+      fetchSheet('Enquiries'),
+    ]);
+
+    visitorData  = (visitors  && !visitors.error)  ? visitors  : [];
+    enquiryData  = (enquiries && !enquiries.error)  ? enquiries : [];
+
+    renderVisitors(visitorData);
+    renderEnquiries(enquiryData);
+  } catch(err) {
+    document.getElementById('v-table-body').innerHTML = '<div class="empty-state">Failed to load data. Please refresh.</div>';
+    document.getElementById('e-table-body').innerHTML = '<div class="empty-state">Failed to load data. Please refresh.</div>';
+  }
+
+  btn.classList.remove('spin');
+}
+
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('nav')) document.querySelector('nav').classList.remove('nav-open');
+});
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (nav) nav.style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+
+loadAll();
+</script>
+</body>
+</html>

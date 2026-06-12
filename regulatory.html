@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — AUS Regulatory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--dark);">
+  <div class="container">
+    <div class="section-label">Internal Reference</div>
+    <h2 class="section-title">AUS <span class="grad-text">Regulatory</span></h2>
+    <p class="section-sub">TGA · TGO93 · ODC · SAS-B · AP · S8 · S4 · GMP · COA · ScriptCheckWA · SafeScript</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section style="padding: 40px 0 120px; background: var(--dark-2);">
+  <div class="container">
+
+    <!-- Core Regulatory Terms -->
+    <div class="ref-wrap" style="margin-bottom:48px;">
+      <div class="ref-section-title">A. Core Regulatory Terms — Know Every One Without Hesitation</div>
+      <table class="ref-table" style="min-width:800px;">
+        <thead><tr><th>Term</th><th>Full Name</th><th>What It Controls / Does</th><th>Why It Matters for Thai Stick</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-term">TGA</td>
+            <td>Therapeutic Goods Administration</td>
+            <td>Australia's medicines regulator — equivalent to the FDA. Controls what can be imported, prescribed, manufactured, and sold. Sets all standards for medicinal cannabis.</td>
+            <td>Every Thai Stick product entering Australia must meet TGA standards. Without TGA approval pathways, we cannot legally supply a single gram.</td>
+          </tr>
+          <tr>
+            <td class="td-term">TGO 93</td>
+            <td>Therapeutic Goods Order 93</td>
+            <td>The TGA's specific quality standard for medicinal cannabis. Sets strict limits on: THC/CBD potency accuracy, pesticide residues, microbial contamination, heavy metals, moisture content, foreign matter.</td>
+            <td>Every batch imported from Thailand must pass TGO93 testing (via ChemCentre in Perth) before release. Our COA is the proof. If a batch fails — it cannot enter the supply chain.</td>
+          </tr>
+          <tr>
+            <td class="td-term">ODC</td>
+            <td>Office of Drug Control</td>
+            <td>Government body issuing import and export licences for cannabis. Two requirements: (1) ODC Import Licence — company-level approval, and (2) ODC Import Permit — issued per shipment.</td>
+            <td>Thai Stick must hold an active ODC Import Licence. Every individual shipment from Thailand requires a separate ODC Import Permit before it departs. This is our #1 pre-commercial step.</td>
+          </tr>
+          <tr>
+            <td class="td-term">SAS-B</td>
+            <td>Special Access Scheme Category B</td>
+            <td>The most common prescription pathway. Any registered doctor can apply to TGA to prescribe for an individual patient — no specialist qualification required.</td>
+            <td>This is how most of Australia's ~1 million annual cannabis prescriptions are written. Getting Thai Stick onto the SAS-B approved product list means any doctor can find and prescribe us.</td>
+          </tr>
+          <tr>
+            <td class="td-term">AP</td>
+            <td>Authorised Prescriber</td>
+            <td>A doctor who applies once to TGA to prescribe for an entire category of patients — no individual TGA approval needed per script. Much higher prescribing volume than SAS-B.</td>
+            <td>Cannabis clinics (Alternaleaf, PlantMed, Candor) operate mainly on AP pathways. One AP clinic = hundreds of monthly scripts. Getting AP clinics to adopt Thai Stick = high volume, low friction.</td>
+          </tr>
+          <tr>
+            <td class="td-term">S8</td>
+            <td>Schedule 8 Controlled Drug</td>
+            <td>Drug classification for all THC-containing cannabis products. Requires: real-time prescription monitoring (ScriptCheckWA/SafeScript), closed-loop S8 transport, vault storage, chain-of-custody on every delivery.</td>
+            <td>All 6 Thai Stick flower SKUs are Schedule 8. Our Perth facility handles all S8 dispatch documentation. Every delivery must have a signed chain-of-custody form.</td>
+          </tr>
+          <tr>
+            <td class="td-term">S4</td>
+            <td>Schedule 4 Prescription Medicine</td>
+            <td>Classification for CBD-only products under 1% THC. Less restricted than S8 — no prescription monitoring system required.</td>
+            <td>Thai Stick does not currently have S4 products. All our flower contains meaningful THC content. Worth noting for future CBD product expansion.</td>
+          </tr>
+          <tr>
+            <td class="td-term">COA</td>
+            <td>Certificate of Analysis</td>
+            <td>The batch test report proving a product meets TGO93 standards. Issued by an accredited lab. Covers: potency, terpenes, microbials, pesticides, heavy metals, moisture.</td>
+            <td>Thai Stick provides two COAs per batch: Thai lab COA (pre-export) + ChemCentre COA (TGO93 release, Australia). Both must be available to buyers on request.</td>
+          </tr>
+          <tr>
+            <td class="td-term">GMP</td>
+            <td>Good Manufacturing Practice</td>
+            <td>International quality standard for pharmaceutical manufacturing. Covers: facility cleanliness, staff training, batch records, equipment calibration, and full product traceability.</td>
+            <td>Our Perth packing facility is GMP-certified. Our Thai cultivation facility operates to GMP-equivalent standards required for TGA import approval.</td>
+          </tr>
+          <tr>
+            <td class="td-term">GACP</td>
+            <td>Good Agricultural and Collection Practices</td>
+            <td>WHO standard for quality control from seed to harvest. Covers cultivation inputs, harvesting, post-harvest handling, and documentation.</td>
+            <td>Thai Stick's Thai facility is GACP certified — the required standard for cannabis cultivation destined for pharmaceutical use. Verified by independent audit.</td>
+          </tr>
+          <tr>
+            <td class="td-term">ScriptCheckWA</td>
+            <td>Prescription Monitoring System — WA</td>
+            <td>WA's real-time prescription monitoring database. All S8 prescriptions must be checked and recorded. Mandatory for all WA prescribers since June 2025.</td>
+            <td>WA pharmacies and prescribers use ScriptCheckWA for every Thai Stick S8 transaction. Our S8 delivery documentation is pre-formatted for ScriptCheckWA compatibility.</td>
+          </tr>
+          <tr>
+            <td class="td-term">SafeScript</td>
+            <td>Prescription Monitoring System — VIC</td>
+            <td>Victoria's equivalent of ScriptCheckWA. Mandatory check before prescribing or dispensing S8 medicines in VIC.</td>
+            <td>All VIC pharmacy and clinic accounts must use SafeScript. Our documentation is compliant.</td>
+          </tr>
+          <tr>
+            <td class="td-term">AHPRA</td>
+            <td>Australian Health Practitioner Regulation Agency</td>
+            <td>Registers all practising doctors, nurses, and pharmacists in Australia. Every prescriber has an AHPRA registration number.</td>
+            <td>We collect AHPRA numbers from all clinic accounts. Verify doctor registration at ahpra.gov.au before first supply.</td>
+          </tr>
+          <tr>
+            <td class="td-term">ARTG</td>
+            <td>Australian Register of Therapeutic Goods</td>
+            <td>The TGA's official register of approved therapeutic goods. ARTG registration = formal product approval to make therapeutic claims.</td>
+            <td>No cannabis flower product in Australia has ARTG registration. All products (including competitors) operate under SAS-B/AP pathways. We cannot make therapeutic claims — only present clinical terpene data.</td>
+          </tr>
+          <tr>
+            <td class="td-term">FEFO</td>
+            <td>First Expiry, First Out</td>
+            <td>Standard pharmaceutical stock rotation practice — products with the earliest expiry date are dispatched first.</td>
+            <td>Thai Stick's Perth facility operates strict FEFO. Ensures patients receive the freshest possible product and no expired stock reaches the supply chain.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Prescription Pathways -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">B. Prescription Pathways — How Doctors Prescribe Thai Stick</div>
+      <table class="ref-table" style="min-width:700px;">
+        <thead><tr><th>Pathway</th><th>Who Uses It</th><th>Process</th><th>Volume Profile</th><th>Thai Stick Sales Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>SAS-B</td>
+            <td>Any registered doctor in Australia</td>
+            <td>Doctor applies to TGA online for each individual patient. TGA approves or declines. Doctor writes prescription. Pharmacist dispenses.</td>
+            <td>Lower volume per doctor — each new patient requires a new application. High doctor count.</td>
+            <td>Target individual GPs and small clinics. Get product onto their SAS-B preferred list.</td>
+          </tr>
+          <tr>
+            <td style="color:var(--teal);font-weight:700;">AP — Authorised Prescriber</td>
+            <td>Specialist doctors who apply for AP status for a patient category</td>
+            <td>Doctor applies once for a condition category (e.g. chronic pain). Once approved, they can prescribe to all patients in that category without individual TGA applications.</td>
+            <td>High volume per doctor — one AP approval = unlimited scripts for that indication.</td>
+            <td style="color:var(--teal);font-weight:600;">HIGHEST PRIORITY. Cannabis clinics (Alternaleaf, PlantMed, Candor) are AP. One clinic = hundreds of monthly scripts.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTierNav() { document.getElementById('nav-tier-menu').classList.toggle('open'); }
+function toggleMoreNav() { document.getElementById('nav-more-menu').classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) { const m = document.getElementById('nav-more-menu'); if (m) m.classList.remove('open'); }
+  if (!e.target.closest('.nav-tier-pick')) { const t = document.getElementById('nav-tier-menu'); if (t) t.classList.remove('open'); }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

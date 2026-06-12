@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Rep Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.dash-wrap { max-width: 1400px; margin: 0 auto; padding: 104px 32px 64px; }
+.dash-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
+}
+.dash-title { font-family: var(--font-disp); font-size: 32px; font-weight: 400; color: var(--light); }
+.dash-subtitle { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* Stats */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.stat-card { background: var(--dark-2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
+.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.stat-value { font-family: var(--font-mono); font-size: 30px; font-weight: 500; background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* Outcome pills */
+.outcome-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.outcome-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--dark-2); border: 1px solid var(--border);
+  border-radius: 20px; padding: 7px 16px; font-size: 12px; font-weight: 600;
+}
+.outcome-pill .pill-count { font-family: var(--font-mono); font-size: 14px; color: var(--teal); }
+.outcome-pill .pill-label { color: var(--muted); }
+
+/* Filters */
+.filters-bar {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
+  background: var(--dark-2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 20px;
+}
+.filter-group { display: flex; flex-direction: column; gap: 5px; }
+.filter-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.filter-select, .filter-input {
+  background: var(--dark-3); border: 1px solid var(--border); border-radius: 6px;
+  color: var(--light); font-family: var(--font-body); font-size: 13px;
+  padding: 8px 12px; outline: none; transition: border-color 0.2s;
+}
+.filter-select:focus, .filter-input:focus { border-color: var(--teal); }
+.filter-input { width: 200px; }
+.filter-input::placeholder { color: var(--muted); }
+.filter-input[type="date"] { width: 150px; color-scheme: dark; }
+.btn-clear {
+  background: transparent; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--muted); font-family: var(--font-body); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 16px;
+  cursor: pointer; transition: all 0.2s; align-self: flex-end;
+}
+.btn-clear:hover { border-color: #ff6b6b; color: #ff6b6b; }
+
+/* Table */
+.table-wrap { background: var(--dark-2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.table-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap;
+}
+.table-count { font-size: 13px; color: var(--muted); }
+.btn-refresh {
+  background: transparent; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--muted); font-family: var(--font-body); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 16px;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.btn-refresh:hover { border-color: var(--teal); color: var(--teal); }
+.btn-refresh.spin svg { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 900px; }
+thead th {
+  padding: 11px 14px; text-align: left;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border); background: var(--dark-3);
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+tbody td { padding: 11px 14px; font-size: 13px; color: var(--light-2); white-space: nowrap; }
+tbody td.ts { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+tbody td.sku { max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+tbody td.notes-cell { max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
+.outcome-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+}
+.badge-followup  { background: rgba(232,160,32,0.15); color: var(--amber); }
+.badge-agreement { background: rgba(11,168,150,0.15); color: var(--teal); }
+.badge-pending   { background: rgba(120,120,200,0.15); color: #9999ee; }
+.badge-sample    { background: rgba(200,120,120,0.15); color: #ee9999; }
+.badge-notint    { background: rgba(120,120,120,0.12); color: var(--muted); }
+.badge-other     { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+.empty-state { padding: 48px; text-align: center; color: var(--muted); font-size: 14px; }
+.loading-state { padding: 48px; text-align: center; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>
+        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="dash-wrap">
+
+  <div class="dash-header">
+    <div>
+      <div class="dash-title">Rep Dashboard</div>
+      <div class="dash-subtitle">Sales visit log — Rep_Log sheet</div>
+    </div>
+    <button class="btn-refresh" id="refresh-btn" onclick="loadData()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      Refresh
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Total Visits</div>
+      <div class="stat-value" id="stat-total">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Active Reps</div>
+      <div class="stat-value" id="stat-reps">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Unique Clinics</div>
+      <div class="stat-value" id="stat-clinics">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">This Week</div>
+      <div class="stat-value" id="stat-week">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Top SKU</div>
+      <div class="stat-value" style="font-size:16px;margin-top:6px;" id="stat-sku">—</div>
+    </div>
+  </div>
+
+  <!-- Outcome pills -->
+  <div class="outcome-row" id="outcome-pills"></div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Rep Name</span>
+      <select class="filter-select" id="filter-rep" onchange="applyFilters()">
+        <option value="">All Reps</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Outcome</span>
+      <select class="filter-select" id="filter-outcome" onchange="applyFilters()">
+        <option value="">All Outcomes</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Date From</span>
+      <input class="filter-input" type="date" id="filter-date-from" onchange="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Date To</span>
+      <input class="filter-input" type="date" id="filter-date-to" onchange="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Search</span>
+      <input class="filter-input" type="text" id="filter-search" placeholder="Clinic, contact, notes…" oninput="applyFilters()">
+    </div>
+    <button class="btn-clear" onclick="clearFilters()">Clear</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <div class="table-toolbar">
+      <span class="table-count" id="table-count">Loading…</span>
+    </div>
+    <div class="table-scroll">
+      <div id="table-body">
+        <div class="loading-state">Loading rep log data…</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzha6ED7R4JqAXq0AqoBk1bndu0hJwDbyBrzJQawB093HvwGZT7fUQZ9cP7JzYGpPucEA/exec';
+
+if (sessionStorage.getItem('access') !== 'team') window.location.href = 'index.html';
+
+let allData = [];
+
+function fetchSheet(sheetName) {
+  return new Promise((resolve, reject) => {
+    const cb = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    window[cb] = (data) => { delete window[cb]; document.head.removeChild(script); resolve(data); };
+    script.src = `${APPS_SCRIPT_URL}?sheet=${encodeURIComponent(sheetName)}&callback=${cb}`;
+    script.onerror = () => { delete window[cb]; reject(new Error('Failed')); };
+    document.head.appendChild(script);
+  });
+}
+
+function fmtTs(val) {
+  if (!val) return '—';
+  const d = new Date(val);
+  if (isNaN(d)) return String(val).split('T')[0];
+  return d.toLocaleDateString('en-AU', { day: '2-digit', month: 'short', year: 'numeric' })
+    + ' ' + d.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' });
+}
+function fmtDate(val) {
+  if (!val) return '—';
+  const d = new Date(val);
+  if (isNaN(d)) return val;
+  return d.toLocaleDateString('en-AU', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function outcomeBadge(outcome) {
+  if (!outcome) return '<span class="outcome-badge badge-other">—</span>';
+  const o = outcome.toLowerCase();
+  let cls = 'badge-other';
+  if (o.includes('follow')) cls = 'badge-followup';
+  else if (o.includes('agreement')) cls = 'badge-agreement';
+  else if (o.includes('pending')) cls = 'badge-pending';
+  else if (o.includes('sample')) cls = 'badge-sample';
+  else if (o.includes('not')) cls = 'badge-notint';
+  return `<span class="outcome-badge ${cls}">${outcome}</span>`;
+}
+
+function thisWeekCount(rows) {
+  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  return rows.filter(r => r.timestamp && new Date(r.timestamp) >= weekAgo).length;
+}
+
+function topSku(rows) {
+  const counts = {};
+  rows.forEach(r => {
+    if (!r.interested_sku) return;
+    r.interested_sku.split(',').forEach(s => {
+      const name = s.trim();
+      if (name) counts[name] = (counts[name] || 0) + 1;
+    });
+  });
+  if (!Object.keys(counts).length) return '—';
+  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+}
+
+function renderStats(rows) {
+  const reps    = new Set(rows.map(r => r.rep_name).filter(Boolean)).size;
+  const clinics = new Set(rows.map(r => r.clinic_name).filter(Boolean)).size;
+  document.getElementById('stat-total').textContent   = rows.length;
+  document.getElementById('stat-reps').textContent    = reps;
+  document.getElementById('stat-clinics').textContent = clinics;
+  document.getElementById('stat-week').textContent    = thisWeekCount(rows);
+  document.getElementById('stat-sku').textContent     = topSku(rows);
+
+  // Outcome pills
+  const outcomeCounts = {};
+  rows.forEach(r => {
+    const o = r.outcome || '(none)';
+    outcomeCounts[o] = (outcomeCounts[o] || 0) + 1;
+  });
+  document.getElementById('outcome-pills').innerHTML = Object.entries(outcomeCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([label, count]) => `
+      <div class="outcome-pill">
+        <span class="pill-count">${count}</span>
+        <span class="pill-label">${label}</span>
+      </div>`).join('');
+}
+
+function populateFilters(rows) {
+  const reps     = [...new Set(rows.map(r => r.rep_name).filter(Boolean))].sort();
+  const outcomes = [...new Set(rows.map(r => r.outcome).filter(Boolean))].sort();
+
+  const repSel = document.getElementById('filter-rep');
+  const curRep = repSel.value;
+  repSel.innerHTML = '<option value="">All Reps</option>' + reps.map(r => `<option value="${r}">${r}</option>`).join('');
+  repSel.value = curRep;
+
+  const outSel = document.getElementById('filter-outcome');
+  const curOut = outSel.value;
+  outSel.innerHTML = '<option value="">All Outcomes</option>' + outcomes.map(o => `<option value="${o}">${o}</option>`).join('');
+  outSel.value = curOut;
+}
+
+function applyFilters() {
+  const rep      = document.getElementById('filter-rep').value;
+  const outcome  = document.getElementById('filter-outcome').value;
+  const dateFrom = document.getElementById('filter-date-from').value;
+  const dateTo   = document.getElementById('filter-date-to').value;
+  const search   = document.getElementById('filter-search').value.toLowerCase();
+
+  const filtered = allData.filter(r => {
+    if (rep && r.rep_name !== rep) return false;
+    if (outcome && r.outcome !== outcome) return false;
+    if (dateFrom) {
+      const ts = r.timestamp ? new Date(r.timestamp) : null;
+      if (!ts || ts < new Date(dateFrom)) return false;
+    }
+    if (dateTo) {
+      const ts = r.timestamp ? new Date(r.timestamp) : null;
+      if (!ts || ts > new Date(dateTo + 'T23:59:59')) return false;
+    }
+    if (search) {
+      const hay = [r.clinic_name, r.contact_name, r.notes, r.interested_sku, r.email].join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('table-count').textContent = `${filtered.length} of ${allData.length} record${allData.length !== 1 ? 's' : ''}`;
+  renderTable(filtered);
+}
+
+function clearFilters() {
+  document.getElementById('filter-rep').value = '';
+  document.getElementById('filter-outcome').value = '';
+  document.getElementById('filter-date-from').value = '';
+  document.getElementById('filter-date-to').value = '';
+  document.getElementById('filter-search').value = '';
+  applyFilters();
+}
+
+function renderTable(rows) {
+  const tbody = document.getElementById('table-body');
+  if (!rows.length) { tbody.innerHTML = '<div class="empty-state">No records match the current filters.</div>'; return; }
+  tbody.innerHTML = `<table>
+    <thead><tr>
+      <th>Timestamp</th><th>Rep</th><th>Clinic</th><th>Contact</th>
+      <th>Email</th><th>Phone</th><th>Interested SKUs</th>
+      <th>Next Meeting</th><th>Time</th><th>Notes</th><th>Outcome</th>
+    </tr></thead>
+    <tbody>
+      ${rows.map(r => `<tr>
+        <td class="ts">${fmtTs(r.timestamp)}</td>
+        <td><strong>${r.rep_name || '—'}</strong></td>
+        <td>${r.clinic_name || '—'}</td>
+        <td>${r.contact_name || '—'}</td>
+        <td>${r.email || '—'}</td>
+        <td>${r.contact_number || '—'}</td>
+        <td class="sku" title="${(r.interested_sku||'').replace(/"/g,'&quot;')}">${r.interested_sku || '—'}</td>
+        <td>${fmtDate(r.next_meeting_date)}</td>
+        <td>${r.next_meeting_time || '—'}</td>
+        <td class="notes-cell" title="${(r.notes||'').replace(/"/g,'&quot;')}">${r.notes || '—'}</td>
+        <td>${outcomeBadge(r.outcome)}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function loadData() {
+  const btn = document.getElementById('refresh-btn');
+  btn.classList.add('spin');
+  try {
+    const rows = await fetchSheet('Rep_Log');
+    allData = (rows && !rows.error) ? rows : [];
+    renderStats(allData);
+    populateFilters(allData);
+    applyFilters();
+  } catch(err) {
+    document.getElementById('table-body').innerHTML = '<div class="empty-state">Failed to load data. Please refresh.</div>';
+  }
+  btn.classList.remove('spin');
+}
+
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('nav')) document.querySelector('nav').classList.remove('nav-open');
+});
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (nav) nav.style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+
+loadData();
+</script>
+</body>
+</html>

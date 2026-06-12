@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Facility Knowledge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--dark);">
+  <div class="container">
+    <div class="section-label">Internal Reference</div>
+    <h2 class="section-title">Facility <span class="grad-text">Knowledge</span></h2>
+    <p class="section-sub">Purpose-built hybrid greenhouse — Mahachai, Samut Sakhon, Thailand.</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section style="padding: 40px 0 120px; background: var(--dark-2);">
+  <div class="container">
+
+    <!-- Facility Specifications -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Facility Specifications</div>
+      <table class="ref-table">
+        <thead><tr><th>Parameter</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Cultivation Site</td><td>Mahachai, Samut Sakhon, Thailand</td></tr>
+          <tr><td>Facility Type</td><td>Purpose-built mixed-light greenhouse (Hybrid/Greenhouse)</td></tr>
+          <tr><td>Total Grow Area</td><td>3,904 m² of controlled canopy environment</td></tr>
+          <tr><td>Cultivation Method</td><td>Year-round / continuous harvest</td></tr>
+          <tr><td>Lighting System</td><td>Advanced full-spectrum LED arrays — calibrated per growth stage</td></tr>
+          <tr><td>Climate Control</td><td>HVAC, CO₂ enrichment, light attenuation curtains, continuous air circulation</td></tr>
+          <tr><td>Irrigation</td><td>Automated drip delivery — precision dosing for uniform hydration</td></tr>
+          <tr><td>Water Treatment</td><td>Reverse osmosis system</td></tr>
+          <tr><td>Substrate</td><td>Premium rockwool + coco coir blend</td></tr>
+          <tr><td>Climate Parameters</td><td>Temperature: 16–22°C &nbsp;|&nbsp; Humidity: 50–60% RH</td></tr>
+          <tr><td>Fertigation</td><td>Automated nutrient dosing system</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Post-Harvest Process -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Post-Harvest Process</div>
+      <table class="ref-table">
+        <thead><tr><th>Stage</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Curing Duration</td><td>14-day slow cure</td></tr>
+          <tr><td>Curing Conditions</td><td>Strictly regulated temperature and relative humidity</td></tr>
+          <tr><td>Purpose of Curing</td><td>Maximise terpene profile and cannabinoid stability</td></tr>
+          <tr><td>Trimming Method</td><td>Hand-trimmed by trained technicians</td></tr>
+          <tr><td>Trimming Purpose</td><td>Preserve trichome integrity, morphology, and overall quality</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cultivation Methods Comparison -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Cultivation Methods Comparison</div>
+      <table class="ref-table">
+        <thead><tr><th>Method</th><th>Key Characteristics</th></tr></thead>
+        <tbody>
+          <tr><td>Indoor</td><td>Controlled environment (grow tent/room). Full control of light, temp, humidity, airflow. Year-round production.</td></tr>
+          <tr><td>Outdoor</td><td>12+ hours sunlight. Seasonal: plant Apr–Jun, harvest Sep–Oct (Northern Hemisphere).</td></tr>
+          <tr><td>Greenhouse</td><td>Combines indoor + outdoor benefits. Transparent roof allows sunlight. Protected from frost, pests, disease.</td></tr>
+          <tr><td style="color:var(--teal);">Thai Stick — Hybrid Greenhouse</td><td>Mixed-light greenhouse at Mahachai. LED arrays + natural light. Full environmental automation. Industry-leading quality control.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTierNav() { document.getElementById('nav-tier-menu').classList.toggle('open'); }
+function toggleMoreNav() { document.getElementById('nav-more-menu').classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) { const m = document.getElementById('nav-more-menu'); if (m) m.classList.remove('open'); }
+  if (!e.target.closest('.nav-tier-pick')) { const t = document.getElementById('nav-tier-menu'); if (t) t.classList.remove('open'); }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

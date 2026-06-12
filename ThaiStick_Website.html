@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Premium Medical Cannabis Supply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     NAV
+══════════════════════════════ -->
+<nav>
+  <a class="nav-logo" href="#hero">
+    <img src="Thai Stick Logo.png" alt="Thai Stick">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>
+        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     SCREEN 1 — HERO
+══════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Medical Cannabis Supply · Perth WA · GMP Certified</div>
+        <h1 class="hero-title">
+          The Supply Partner
+          <strong class="grad-text">Your Dispensary Can Count On.</strong>
+        </h1>
+        <p class="hero-sub">From Thailand to your hands.</p>
+        <div class="hero-creds">
+          <span class="cred-pill">TGO93 Full Goods Release</span>
+          <span class="cred-pill">GMP Warehouse in Perth WA</span>
+          <span class="cred-pill">COA Every Batch</span>
+        </div>
+        <div class="hero-actions">
+          <div class="tier-picker-wrap">
+            <button class="btn-primary" onclick="showTierPicker()">View Products &amp; Pricing →</button>
+            <div class="tier-picker" id="hero-tier-picker" style="display:none;">
+              <a href="products.html?tier=value" class="tier-pick-btn">Value Tier</a>
+              <a href="products.html?tier=premium" class="tier-pick-btn">Premium Tier</a>
+            </div>
+          </div>
+          <a href="portfolio.html" class="btn-secondary">Explore Products →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SCREEN 2 — WHY THAI STICK
+══════════════════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="why-inner">
+      <div>
+        <div class="section-label">Our Supply Chain</div>
+        <h2 class="section-title">From Cultivation to <span class="grad-text">Certified Release</span></h2>
+        <p class="section-sub">A fully documented, pharmaceutical-grade pathway from our Thai cultivation facility to your dispensary — with GMP manufacturing and TGO93 release in Perth, WA.</p>
+        <div class="chain-wrap">
+          <div class="chain-step">
+            <div class="chain-icon">🌿</div>
+            <div class="chain-content">
+              <div class="chain-name">Cultivation — Thailand</div>
+              <div class="chain-detail">Pharmaceutical-grade cultivation at our state-of-the-art Thai facility. Strict genetic consistency and agronomic controls across all SKUs.</div>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-icon">✈️</div>
+            <div class="chain-content">
+              <div class="chain-name">Export — TGA Import Permit</div>
+              <div class="chain-detail">Pre-export release testing. Shipped under valid TGA import permit to our Perth GMP facility. Full documentation at every stage.</div>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-icon">🏭</div>
+            <div class="chain-content">
+              <div class="chain-name">GMP Manufacturing — Perth WA</div>
+              <div class="chain-detail">To our GMP-certified Perth facility. Humidity-controlled storage throughout.</div>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-icon">🏷️</div>
+            <div class="chain-content">
+              <div class="chain-name">GMP — Filled, labelled, and packaged</div>
+              <div class="chain-detail">GMP-filled, labelled, and packaged by our partner Epsilon. Your artwork applied.</div>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-icon">🧪</div>
+            <div class="chain-content">
+              <div class="chain-name">TGO93 Release — ChemCentre</div>
+              <div class="chain-detail">Full TGO93 suite by ChemCentre Australia. Certificate of Analysis issued per batch. No product leaves without release documentation.</div>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-icon">📦</div>
+            <div class="chain-content">
+              <div class="chain-name">Delivered to You</div>
+              <div class="chain-detail">TGO93-released product dispatched to your dispensary. COA provided proactively on every release — before you need to ask.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Why Thai Stick</div>
+        <h2 class="section-title">Built for <span class="grad-text">Pharmaceutical Certainty</span></h2>
+        <div class="diff-grid">
+          <div class="diff-card">
+            <div class="diff-icon">✅</div>
+            <div class="diff-title">TGO93 Full Goods Release</div>
+            <div class="diff-desc">Every batch released by ChemCentre Australia under full TGO93 compliance. Your supply is audit-ready from day one.</div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-icon">🏭</div>
+            <div class="diff-title">GMP-Certified Manufacturing</div>
+            <div class="diff-desc">All product is manufactured and packaged at our GMP-certified Perth facility — licensed, inspected, and compliant.</div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-icon">📋</div>
+            <div class="diff-title">COA on Every Release</div>
+            <div class="diff-desc">Certificate of Analysis provided proactively on each batch release. Potency, microbiology, pesticides, heavy metals — all documented.</div>
+          </div>
+          <div class="diff-card">
+            <div class="diff-icon">🎯</div>
+            <div class="diff-title">Indication-Matched Portfolio</div>
+            <div class="diff-desc">Six strains precisely matched to Sleep, Pain, Anxiety, and Depression/ADHD indications — clinically defensible from day one.</div>
+          </div>
+        </div>
+        <div class="compliance-stmt">
+          <p>"Every product supplied by Thai Stick is cultivated to pharmaceutical-grade standards, to our GMP-certified Perth facility, and fully released under TGO93 before it reaches you. Your supply is backed by documentation at every stage."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     FOOTER
+══════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════
+     MODALS — STRAIN DETAIL
+══════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<script>
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(10,14,20,0.97)';
+  } else {
+    nav.style.background = 'rgba(10,14,20,0.85)';
+  }
+});
+function showTierPicker() {
+  const p = document.getElementById('hero-tier-picker');
+  p.style.display = p.style.display === 'none' ? 'flex' : 'none';
+}
+function toggleTierNav() {
+  document.getElementById('nav-tier-menu').classList.toggle('open');
+}
+// ── MORE NAV DROPDOWN ──
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('.nav-tier-pick')) {
+    const t = document.getElementById('nav-tier-menu');
+    if (t) t.classList.remove('open');
+  }
+  if (!e.target.closest('.tier-picker-wrap')) {
+    const p = document.getElementById('hero-tier-picker');
+    if (p) p.style.display = 'none';
+  }
+  if (!e.target.closest('nav')) {
+    document.querySelector('nav').classList.remove('nav-open');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Sales Workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--dark);">
+  <div class="container">
+    <div class="section-label">Internal Reference</div>
+    <h2 class="section-title">Sales <span class="grad-text">Workflow</span></h2>
+    <p class="section-sub">Sales cycle, lead management, visit process, account tiers, and follow-up standards.</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section style="padding: 40px 0 120px; background: var(--dark-2);">
+  <div class="container">
+
+    <!-- Sales Cycle -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;">Sales Cycle — 8 Stages</div>
+      <div class="step-card"><div class="step-num">Stage 1</div><div class="step-title">Prospecting Client</div><div class="step-body">Search for potential B2B buyers — pharmacies, clinics, wholesale distributors. Use lead directory, LinkedIn, industry events, referrals. Segment into Hot / Warm / Cold.</div></div>
+      <div class="step-card"><div class="step-num">Stage 2</div><div class="step-title">Make Initial Contact</div><div class="step-body">First outreach by phone, email, or walk-in. Goal: book a meeting only — do not pitch product on first contact. Pharmacy: ask for Dispensary Manager. Clinic: go through Practice Manager.</div></div>
+      <div class="step-card"><div class="step-num">Stage 3</div><div class="step-title">Product Presentation</div><div class="step-body">In-person or video meeting. Lead with their pain point (stockouts, inconsistent COA, slow delivery). Match SKU to indication. Show COA + terpene matrix. Max 3 SKUs per first meeting.</div></div>
+      <div class="step-card"><div class="step-num">Stage 4</div><div class="step-title">Overcome Objection</div><div class="step-body">Listen actively. Never argue. Acknowledge the objection, bridge to Thai Stick solution. Use master objection sheet. Common objections: 'we have a supplier', 'grown in Thailand', 'not TGA registered'.</div></div>
+      <div class="step-card"><div class="step-num">Stage 5</div><div class="step-title">Close the Sale</div><div class="step-body">Ask for a trial order or commitment. For pharmacies: trial order at reduced rate. For doctors: ask them to prescribe for 2–3 patients over 30 days. For wholesale: propose 90-day pilot.</div></div>
+      <div class="step-card"><div class="step-num">Stage 6</div><div class="step-title">Nurture Prospects</div><div class="step-body">For leads not yet ready: maintain contact every 2–4 weeks. Share new batch COAs, clinical updates, market news. Keep Thai Stick top of mind without pressure.</div></div>
+      <div class="step-card"><div class="step-num">Stage 7</div><div class="step-title">Qualifying Leads</div><div class="step-body">Before spending time on a lead, confirm: Are they licensed? Do they have S8 storage? Do they have prescribing/dispensing authority? What is their monthly volume? Budget?</div></div>
+      <div class="step-card"><div class="step-num">Stage 8</div><div class="step-title">Referrals &amp; Repeat Sales</div><div class="step-body">After 2nd–3rd successful order, ask: "Is there another pharmacy or clinic in your network we should meet?" Referrals are the highest-converting lead source in Australian medical cannabis.</div></div>
+    </div>
+
+    <!-- Lead Qualification -->
+    <div class="ref-wrap" style="margin-bottom:48px;">
+      <div class="ref-section-title">Lead Qualification &amp; Visit Frequency</div>
+      <table class="ref-table">
+        <thead><tr><th>Lead Type</th><th>Definition</th><th>Visit Frequency</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#ff6b6b;">🔥 Hot Lead</td><td>Strong interest, requesting price lists/samples. Familiar with Thai Stick. Likely to order soon.</td><td style="color:var(--teal);font-weight:600;">F4 — 4 visits/month</td></tr>
+          <tr><td style="color:var(--amber);">🤝 Warm Lead</td><td>Shows curiosity, asks about products/pricing but not yet ready to order.</td><td style="color:var(--amber);font-weight:600;">F2 — 2 visits/month</td></tr>
+          <tr><td style="color:var(--muted);">❄️ Cold Lead</td><td>Low engagement, dismissive or uninterested. Unlikely to convert near-term.</td><td style="color:var(--muted);font-weight:600;">F1 — 1 visit/month</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Visit Steps -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;">Dispensary / Clinic Visit — Step by Step</div>
+      <div class="step-card"><div class="step-num">Step 1 — Prepare</div><div class="step-title">Research the Account</div><div class="step-body">Research patient volume, current supplier, main indications. Confirm appointment with decision-maker. Bring: product sheet, COA summary, terpene matrix, business card, notebook.</div></div>
+      <div class="step-card"><div class="step-num">Step 2 — Arrive</div><div class="step-title">Introduce Yourself</div><div class="step-body">Ask for the Dispensary Manager or Practice Manager by name. "Hi, I'm [Name] from Thai Stick — we're a GMP-certified cannabis supplier from Perth. I have a 20-minute appointment."</div></div>
+      <div class="step-card"><div class="step-num">Step 3 — Open</div><div class="step-title">Lead with Their Pain Point</div><div class="step-body">Before showing any product: "Before I walk you through our range — could I ask, what does your current cannabis supply arrangement look like? Specifically around reliability and lead times?" Listen fully. Take notes.</div></div>
+      <div class="step-card"><div class="step-num">Step 4 — Present</div><div class="step-title">Thai Stick Supply Chain</div><div class="step-body">In 5 sentences: Thailand Cultivation → Export → Perth GMP → ChemCentre TGO93 Release → Delivered.</div></div>
+      <div class="step-card"><div class="step-num">Step 5 — SKUs</div><div class="step-title">Present Relevant SKUs — Max 3</div><div class="step-body">Match SKUs to their top patient indications. Lead with indication, then product: "For your chronic pain patients — Maui Wowie 2.0, clinical score 0.71, Beta-Caryophyllene dominant." Show COA for lead SKU.</div></div>
+      <div class="step-card"><div class="step-num">Step 6 — Handle</div><div class="step-title">Objections</div><div class="step-body">Stay calm. Acknowledge first, then bridge. "I understand — we're not asking you to switch, just to trial one SKU." Refer to objection sheet for specific responses.</div></div>
+      <div class="step-card"><div class="step-num">Step 7 — Close</div><div class="step-title">Ask for Trial Order or Next Step</div><div class="step-body">Pharmacy: "Would you be comfortable with a trial order — 10 units of 2 SKUs — 30 days, no commitment?" Clinic: "Would you be open to trialling this with 2–3 patients over the next 30 days?" Never leave without a concrete next step and a confirmed date.</div></div>
+      <div class="step-card"><div class="step-num">Step 8 — Leave</div><div class="step-title">Materials + Confirm Follow-Up</div><div class="step-body">Leave product info sheet, COA summary, business card. Confirm next step out loud: "So I'll follow up on [date] — does that work?" Send calendar confirmation by WhatsApp or email within 2 hours.</div></div>
+      <div class="step-card"><div class="step-num">Step 9 — Log</div><div class="step-title">CRM Entry — Immediately After Visit</div><div class="step-body">Record: who you met, pain points, SKUs shown, objections raised, outcome (trial agreed / follow-up booked / not interested), next action with date. Never rely on memory.</div></div>
+    </div>
+
+    <!-- Account Management Tiers -->
+    <div class="ref-wrap" style="margin-bottom:48px;">
+      <div class="ref-section-title">Account Management Tiers</div>
+      <table class="ref-table">
+        <thead><tr><th>Tier</th><th>Account Type</th><th>Contact Frequency</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--teal);">Tier 1</td><td>Top 10–15% accounts by sales or strategic importance</td><td style="font-weight:600;">Weekly — 4× per month</td></tr>
+          <tr><td style="color:var(--amber);">Tier 2</td><td>Medium-volume accounts</td><td style="font-weight:600;">Bi-weekly — 2× per month</td></tr>
+          <tr><td style="color:var(--muted);">Tier 3</td><td>Smaller or newer accounts</td><td style="font-weight:600;">Monthly — 1× per month</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Follow-Up Standards -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Follow-Up Standards</div>
+      <table class="ref-table">
+        <thead><tr><th>Timing</th><th>Action</th><th>Channel</th></tr></thead>
+        <tbody>
+          <tr><td>Within 24 hours</td><td>Send pricing, stock list, cultivar profile cards, answer product questions</td><td>WhatsApp / Email</td></tr>
+          <tr><td>Ongoing</td><td>Scheduled check-ins, promotions, new cultivar updates</td><td>In-person / WhatsApp</td></tr>
+          <tr><td>After delivery</td><td>Confirm satisfaction, handle any complaints</td><td>Phone / WhatsApp</td></tr>
+          <tr><td>Periodic</td><td>Share market insights, cannabis news, strain education</td><td>WhatsApp / In-person</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTierNav() { document.getElementById('nav-tier-menu').classList.toggle('open'); }
+function toggleMoreNav() { document.getElementById('nav-more-menu').classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) { const m = document.getElementById('nav-more-menu'); if (m) m.classList.remove('open'); }
+  if (!e.target.closest('.nav-tier-pick')) { const t = document.getElementById('nav-tier-menu'); if (t) t.classList.remove('open'); }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

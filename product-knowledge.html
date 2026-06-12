@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Product Knowledge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--dark);">
+  <div class="container">
+    <div class="section-label">Internal Reference</div>
+    <h2 class="section-title">Product <span class="grad-text">Knowledge</span></h2>
+    <p class="section-sub">Cannabis types, terpene profiles, grading, and clinical indication matrix.</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section style="padding: 40px 0 120px; background: var(--dark-2);">
+  <div class="container">
+
+    <!-- Cannabis Types -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Cannabis Types</div>
+      <table class="ref-table">
+        <thead><tr><th>Type</th><th>Characteristics</th><th>Common Effects / Uses</th></tr></thead>
+        <tbody>
+          <tr><td>Cannabis Indica</td><td>Short, bushy, broad leaves. Origin: Hindu Kush Mts (Afghanistan, Pakistan, India)</td><td>Relaxing, calming, sleepiness, appetite, pain relief. Body-high.</td></tr>
+          <tr><td>Cannabis Sativa</td><td>Tall, narrow leaves, widely spaced branches. Origin: warmer regions of Eastern Asia</td><td>Energising, uplifting, creative. Head-high.</td></tr>
+          <tr><td>Cannabis Hybrid</td><td>Cross between Sativa and Indica. Most strains today are hybrids.</td><td>Balanced effects — varies by parent genetics. Can lean Indica or Sativa dominant.</td></tr>
+          <tr><td>Cannabis Ruderalis</td><td>Very small, low THC, autoflowering variety</td><td>Rarely sold; used in breeding for autoflowering traits.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Potency -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Potency — THC &amp; CBD</div>
+      <table class="ref-table">
+        <thead><tr><th>Compound</th><th>Full Name</th><th>Key Property</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">THC</td><td>Tetrahydrocannabinol (Delta-9)</td><td>Primary psychoactive compound — produces the 'high'/euphoria</td></tr>
+          <tr><td class="td-term">CBD</td><td>Cannabidiol</td><td>Non-intoxicating, no high. Therapeutic / wellness benefits.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Product Grading -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Product Grading</div>
+      <table class="ref-table">
+        <thead><tr><th>Grade Code</th><th>Category Name</th><th>Flower Size / Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-term">A+B (BG)</td><td>Top-Shelf</td><td>Flower size &gt; 2 cm. Highest visual appeal, aroma &amp; potency.</td></tr>
+          <tr><td class="td-term">C (SM)</td><td>Popcorn / Mid-Shelf</td><td>Flower size 1–2 cm. Good quality, affordable price.</td></tr>
+          <tr><td class="td-term">F (FF)</td><td>Mini Popcorn / Budget</td><td>Flower size &lt; 1 cm. Most affordable, lower potency.</td></tr>
+          <tr><td class="td-term">SG</td><td>Sugar Leaf</td><td>Trimmed leaves separated from flower buds.</td></tr>
+          <tr><td class="td-term">FSL</td><td>Fine Sugar Leaf</td><td>Powder-like trichomes from bottom of storage bags.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Terpene Profiles -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Terpene Profiles — Clinical Reference</div>
+      <table class="ref-table" style="min-width:900px;">
+        <thead><tr><th>Terpene</th><th>Potential Effects</th><th>Research Highlights</th><th>Clinical Nuance</th></tr></thead>
+        <tbody>
+          <tr><td>Myrcene</td><td>Sedative, muscle relaxant, analgesic</td><td>Potentiates GABA-A receptor responses; acts synergistically with THC to cross the blood-brain barrier.</td><td>Primary driver of pronounced sedation. Essential for nighttime / insomnia formulations.</td></tr>
+          <tr><td>Linalool</td><td>Anxiolytic, sedative, anticonvulsant</td><td>Modulates GABAergic transmission and inhibits glutamate binding; reduces CNS excitability.</td><td>Excellent for severe panic disorders, sleep onset latency, and adjunctive seizure management.</td></tr>
+          <tr><td>Beta-Caryophyllene</td><td>Anti-inflammatory, analgesic, neuroprotective</td><td>Direct selective CB2 receptor agonist. Reduces pro-inflammatory cytokines.</td><td>Highly clinically relevant — targets peripheral pain and inflammatory bowel without psychoactive load.</td></tr>
+          <tr><td>Limonene</td><td>Anxiolytic, mood elevation, gastro-protective</td><td>Modulates serotonin (5-HT1A) and dopamine neurotransmission; synergistic anxiolytic action with CBD.</td><td>Ideal for daytime formulations targeting anxiety, PTSD, or treatment-resistant depression.</td></tr>
+          <tr><td>Alpha-Pinene</td><td>Bronchodilation, alertness, memory support</td><td>Functions as an AChE inhibitor; preserves acetylcholine to offset THC-induced memory deficits.</td><td>Prescribed to mitigate cognitive fog of high-THC doses; mild clinical bronchodilator.</td></tr>
+          <tr><td>Humulene</td><td>Anti-inflammatory, analgesic, anorectic</td><td>Inhibits COX-2 and iNOS; shares structural synergy with caryophyllene.</td><td>Co-occurs with caryophyllene to amplify anti-inflammatory efficacy.</td></tr>
+          <tr><td>Nerolidol</td><td>Sedative, antifungal, skin-permeation enhancer</td><td>Exhibits systemic sedative qualities in preclinical models.</td><td>Valued in transdermal patches and topical formulations for permeability enhancement.</td></tr>
+          <tr><td>Ocimene</td><td>Antiviral, antifungal, decongestant</td><td>Deploys defensive, oxidative-stress-inhibiting properties.</td><td>Associated with uplifting sativa-type profiles. Trace constituent — limited human clinical data.</td></tr>
+          <tr><td>Bisabolol</td><td>Anti-inflammatory, antioxidant, gastro-protective</td><td>Suppresses pro-inflammatory cytokines (TNF-alpha, IL-6).</td><td>Excellent for dermatological topicals, oral mucositis, and gut-inflammation targeting.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Terpene-Symptom Matrix -->
+    <div class="ref-wrap">
+      <div class="ref-section-title">Terpene–Symptom Reference Matrix — Clinical Prescriber Guide</div>
+      <table class="ref-table" style="min-width:900px;">
+        <thead><tr><th>Symptom / Indication</th><th>Dominant Terpene</th><th>Core Synergy</th><th>Enhancer</th><th>Modifier</th><th>Lead SKU</th></tr></thead>
+        <tbody>
+          <tr><td>Chronic / Cancer Pain</td><td>Beta-Caryophyllene</td><td>Myrcene</td><td>Linalool</td><td>Humulene</td><td style="color:var(--teal);font-weight:600;">Maui Wowie 2.0 (0.71)</td></tr>
+          <tr><td>Anxiety</td><td>Linalool</td><td>Limonene</td><td>Beta-Caryophyllene</td><td>Bisabolol</td><td style="color:var(--teal);font-weight:600;">Prizefighter (0.64)</td></tr>
+          <tr><td>Sleep Disorder</td><td>Myrcene</td><td>Linalool</td><td>Nerolidol</td><td>Bisabolol</td><td style="color:var(--teal);font-weight:600;">Trop Cherry BX1 (0.42)</td></tr>
+          <tr><td>Depression</td><td>Limonene</td><td>Alpha-Pinene</td><td>Ocimene</td><td>Linalool</td><td style="color:var(--teal);font-weight:600;">Da Funk (0.36)</td></tr>
+          <tr><td>PTSD</td><td>Linalool</td><td>Beta-Caryophyllene</td><td>Limonene</td><td>Nerolidol</td><td style="color:var(--teal);font-weight:600;">Runtz Mints (0.37)</td></tr>
+          <tr><td>ADHD</td><td>Alpha-Pinene</td><td>Limonene</td><td>Ocimene</td><td>Beta-Caryophyllene</td><td style="color:var(--teal);font-weight:600;">Da Funk (0.30)</td></tr>
+          <tr><td>Arthritis</td><td>Beta-Caryophyllene</td><td>Humulene</td><td>Guaiol</td><td>Alpha-Pinene</td><td style="color:var(--teal);font-weight:600;">Runtz Mints / Maui Wowie 2.0</td></tr>
+          <tr><td>Migraine</td><td>Linalool</td><td>Myrcene</td><td>Beta-Caryophyllene</td><td>Limonene</td><td style="color:var(--teal);font-weight:600;">Prizefighter (0.66)</td></tr>
+          <tr><td>Neuropathic Pain</td><td>Beta-Caryophyllene</td><td>Nerolidol</td><td>Linalool</td><td>Myrcene</td><td style="color:var(--teal);font-weight:600;">Maui Wowie 2.0 (0.47)</td></tr>
+          <tr><td>Insomnia</td><td>Myrcene</td><td>Linalool</td><td>Nerolidol</td><td>Bisabolol</td><td style="color:var(--teal);font-weight:600;">Trop Cherry BX1 (0.42)</td></tr>
+          <tr><td>Cancer Pain</td><td>Beta-Caryophyllene</td><td>Myrcene</td><td>Linalool</td><td>Humulene</td><td style="color:var(--teal);font-weight:600;">Tropical Blues (27.23% THC)</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 20px;font-size:11px;color:var(--muted);background:var(--dark-3);border-top:1px solid var(--border);">Clinical positioning scores based on terpene-symptom research correlations. Not therapeutic claims. All products supplied under TGA SAS-B / AP prescribing pathways. Prescribing decisions remain at clinical discretion of the authorised prescriber.</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTierNav() { document.getElementById('nav-tier-menu').classList.toggle('open'); }
+function toggleMoreNav() { document.getElementById('nav-more-menu').classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) { const m = document.getElementById('nav-more-menu'); if (m) m.classList.remove('open'); }
+  if (!e.target.closest('.nav-tier-pick')) { const t = document.getElementById('nav-tier-menu'); if (t) t.classList.remove('open'); }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

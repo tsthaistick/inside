@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(sessionStorage.getItem('access')!=='team')window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — FAQ & Objection Handling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li><a href="products.html">Products &amp; Pricing</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     PAGE HEADER
+══════════════════════════════ -->
+<section style="padding: 140px 0 60px; background: var(--dark-2);">
+  <div class="container">
+    <div class="section-label">Sales Toolkit</div>
+    <h1 class="section-title">FAQ &amp; <span class="grad-text">Objection Handling</span></h1>
+    <p class="section-sub">Common buyer questions answered — plus a ready-to-use response guide for every objection you'll hear in the field.</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     FAQ ACCORDION
+══════════════════════════════ -->
+<section id="faq" style="padding: 60px 0; background: var(--dark-2);">
+  <div class="container">
+    <div class="faq-inner">
+      <div>
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Questions <span class="grad-text">Answered</span></h2>
+        <p class="section-sub">The five questions we hear most often from pharmacies and clinic networks — answered directly.</p>
+        <div class="divider"></div>
+        <div style="margin-top:32px;padding:24px;background:var(--dark-3);border-radius:6px;border:1px solid var(--border);">
+          <div style="font-size:11px;color:var(--teal);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Need more detail?</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;">Our team responds within 24 hours to any compliance, supply, or commercial question.</p>
+          <a href="mailto:supply@thaistick.com.au" class="btn-secondary" style="font-size:12px;padding:10px 20px;">supply@thaistick.com.au</a>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Is Thai Stick product legally imported and released in Australia?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Thai Stick operates under a valid TGA import permit. All product is cultivated in Thailand, irradiated pre-export, and imported into Australia under full regulatory authority. Manufacturing, packaging, and TGO93 release are performed at our GMP-certified Perth facility by ChemCentre Australia. Every stage of the supply chain is licensed and documented.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What happens if a batch does not pass TGO93 testing?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No product is released to you without a passed TGO93 result from ChemCentre. If a batch fails, it is quarantined and not dispatched. Your supply agreement includes a batch failure protocol that defines the timeline and process for replacement — ensuring your dispensing schedule is protected. We notify you immediately and initiate resolution without requiring you to ask.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Can I get exclusivity in my area or state?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Exclusivity arrangements are available for qualifying accounts on formal supply agreements. Territory scope, volume commitment, and contract term are the key variables. If exclusivity is important to your commercial model, raise it during the supply offer discussion and we will include appropriate terms in the agreement. All exclusivity provisions are explicitly documented — nothing is assumed.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How quickly can you fulfil after a supply agreement is signed?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>First delivery timing depends on the agreed supply schedule, pallet dispatch plan, and TGO93 release timing. We work to a structured release schedule — typically 40 kg released per month from our Perth facility. First release usually occurs within the first month of the agreement. Your dedicated account contact will confirm the exact timeline at agreement execution.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Do you supply Schedule 4 as well as Schedule 8 products?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Our current portfolio is primarily Schedule 8 (controlled drug) flower. Schedule classification for each SKU is confirmed in the product specifications and COA documentation. If your dispensing model requires Schedule 4 product, please raise this during the supply discussion — we can advise on the appropriate SKU and pathway for your patient population.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── FAQ ──
+function toggleFAQ(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(10,14,20,0.97)';
+  } else {
+    nav.style.background = 'rgba(10,14,20,0.85)';
+  }
+});
+// ── MORE NAV DROPDOWN ──
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('nav')) { document.querySelector('nav').classList.remove('nav-open'); }
+});
+</script>
+</body>
+</html>

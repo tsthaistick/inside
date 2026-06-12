@@ -1,0 +1,943 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<script>if(!sessionStorage.getItem('access'))window.location.replace('index.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thai Stick — Portfolio Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="ThaiStick_Website.html">
+    <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
+    <span class="nav-logo-text">THAI STICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="ThaiStick_Website.html#why">Why Us</a></li>
+    <li class="nav-tier-pick">
+      <button class="nav-links-btn" onclick="toggleTierNav()">Product Tier &amp; Pricing</button>
+      <div class="nav-tier-menu" id="nav-tier-menu">
+        <a href="products.html?tier=value">Value Tier</a>
+        <a href="products.html?tier=premium">Premium Tier</a>
+      </div>
+    </li>
+    <li><a href="portfolio.html">Explore Products</a></li>
+    <li class="nav-more">
+      <button class="nav-more-btn" onclick="toggleMoreNav()" aria-label="More pages">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-more-menu" id="nav-more-menu">
+        <a href="facility.html">Facility Knowledge</a>
+        <a href="product-knowledge.html">Product Knowledge</a>
+        <a href="sales-workflow.html">Sales Workflow</a>
+        <a href="regulatory.html">AUS Regulatory</a>
+        <a href="pitch-scripts.html">Pitch Scripts</a>
+        <a href="objections.html">Objection Handling</a>
+        <a href="dashboard.html" style="color:var(--teal);">Visitor Dashboard</a>
+        <a href="rep-dashboard.html" style="color:var(--teal);">Rep Dashboard</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-toggle" onclick="document.querySelector('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     PORTFOLIO HEADER
+══════════════════════════════ -->
+<section style="padding: 140px 0 60px; background: var(--dark);">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div>
+        <div class="section-label">Portfolio Overview</div>
+        <h2 class="section-title">Every <span class="grad-text">Indication-Matched Strains.</span></h2>
+        <p class="section-sub">TGO93-released, GMP-certified medical cannabis flower — matched to the four highest-volume clinical indications in the Australian market.</p>
+        <div class="divider"></div>
+      </div>
+      <button class="enquiry-fab" id="enquiry-btn" onclick="openEnquiryModal()" style="display:none;">Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PRODUCT CATALOGUE
+══════════════════════════════ -->
+<section id="products" style="padding: 40px 0 120px; background: var(--dark-2);">
+  <div class="container">
+
+    <div class="tier-tabs" id="portfolio-tier-tabs" style="margin-bottom:24px;">
+      <button class="tier-tab active" data-tier="value" onclick="filterPortfolioTier('value',this)">Value Tier</button>
+      <button class="tier-tab" data-tier="premium" onclick="filterPortfolioTier('premium',this)">Premium Tier</button>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterSKU('all', this)">All Products</button>
+      <button class="filter-btn" onclick="filterSKU('sleep', this)">Sleep Disorders</button>
+      <button class="filter-btn" onclick="filterSKU('pain', this)">Pain Management</button>
+      <button class="filter-btn" onclick="filterSKU('anxiety', this)">Anxiety / Migraine</button>
+      <button class="filter-btn" onclick="filterSKU('depression', this)">Mental Health / Neuro</button>
+    </div>
+
+    <div class="sku-grid">
+
+      <!-- TROP CHERRY BX1 -->
+      <div class="sku-card" data-ind="sleep" data-tier="value">
+        <div class="sku-top-row">
+          <span class="sku-ind ind-sleep">Sleep Disorders</span>
+          <span class="sku-morph">Hybrid</span>
+        </div>
+        <div class="sku-name">Trop Cherry BX1</div>
+        <div class="thc-wrap">
+          <div class="thc-label">THC / CBD</div>
+          <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:55%"></div></div>
+          <div class="thc-row">
+            <span class="thc-val">16.59%</span>
+            <span class="cbd-val">CBD 0.77%</span>
+          </div>
+        </div>
+        <div class="sku-med-cats">
+          <span class="med-tag med-sleep">Sleep Disorders</span>
+          <span class="med-tag med-mental">Mental Health</span>
+        </div>
+        <div class="sku-best-pos">
+          <div class="best-pos-label">Best Medical Positions</div>
+          <div class="best-pos-item"><span class="pos-num">1.</span> Sleep Disorder <span class="pos-score">0.42</span></div>
+          <div class="best-pos-item"><span class="pos-num">2.</span> Migraine <span class="pos-score">0.35</span></div>
+          <div class="best-pos-item"><span class="pos-num">3.</span> Chronic / Cancer Pain <span class="pos-score">0.34</span></div>
+        </div>
+        <button class="btn-detail" onclick="openModal('trop')">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+          View Full Detail
+        </button>
+      </div>
+
+      <!-- RUNTZ MINTS -->
+      <div class="sku-card" data-ind="pain" data-tier="value">
+        <div class="sku-top-row">
+          <span class="sku-ind ind-pain">Pain Management</span>
+          <span class="sku-morph">Hybrid</span>
+        </div>
+        <div class="sku-name">Runtz Mints</div>
+        <div class="thc-wrap">
+          <div class="thc-label">THC / CBD</div>
+          <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:65%"></div></div>
+          <div class="thc-row">
+            <span class="thc-val">19.57%</span>
+            <span class="cbd-val">CBD 0.82%</span>
+          </div>
+        </div>
+        <div class="sku-med-cats">
+          <span class="med-tag med-pain">Pain Management</span>
+          <span class="med-tag med-mental">Mental Health</span>
+        </div>
+        <div class="sku-best-pos">
+          <div class="best-pos-label">Best Medical Positions</div>
+          <div class="best-pos-item"><span class="pos-num">1.</span> Chronic / Cancer Pain <span class="pos-score">0.45</span></div>
+          <div class="best-pos-item"><span class="pos-num">2.</span> Migraine <span class="pos-score">0.39</span></div>
+          <div class="best-pos-item"><span class="pos-num">3.</span> PTSD <span class="pos-score">0.37</span></div>
+        </div>
+        <button class="btn-detail" onclick="openModal('runtz')">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+          View Full Detail
+        </button>
+      </div>
+
+      <!-- MAUI WOWIE 2.0 -->
+      <div class="sku-card" data-ind="pain" data-tier="value">
+        <div class="sku-top-row">
+          <span class="sku-ind ind-pain">Pain Management</span>
+          <span class="sku-morph">Sativa Dominant</span>
+        </div>
+        <div class="sku-name">Maui Wowie 2.0</div>
+        <div class="thc-wrap">
+          <div class="thc-label">THC / CBD</div>
+          <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:63%"></div></div>
+          <div class="thc-row">
+            <span class="thc-val">19.12%</span>
+            <span class="cbd-val">CBD 0.77%</span>
+          </div>
+        </div>
+        <div class="sku-med-cats">
+          <span class="med-tag med-pain">Pain Management</span>
+          <span class="med-tag med-mental">Mental Health</span>
+        </div>
+        <div class="sku-best-pos">
+          <div class="best-pos-label">Best Medical Positions</div>
+          <div class="best-pos-item"><span class="pos-num">1.</span> Chronic / Cancer Pain <span class="pos-score">0.71</span></div>
+          <div class="best-pos-item"><span class="pos-num">2.</span> Migraine <span class="pos-score">0.59</span></div>
+          <div class="best-pos-item"><span class="pos-num">3.</span> Neuropathic Pain <span class="pos-score">0.47</span></div>
+        </div>
+        <button class="btn-detail" onclick="openModal('maui')">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+          View Full Detail
+        </button>
+      </div>
+
+      <!-- TROPICAL BLUES -->
+      <div class="sku-card" data-ind="pain" data-tier="premium">
+        <div class="sku-top-row">
+          <span class="sku-ind ind-pain">Pain Management</span>
+          <span class="sku-morph">Sativa Dominant</span>
+        </div>
+        <div class="sku-name">Tropical Blues</div>
+        <div class="thc-wrap">
+          <div class="thc-label">THC / CBD</div>
+          <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:90%"></div></div>
+          <div class="thc-row">
+            <span class="thc-val">27.23%</span>
+            <span class="cbd-val">CBD 0.20%</span>
+          </div>
+        </div>
+        <div class="sku-med-cats">
+          <span class="med-tag med-pain">Pain Management</span>
+          <span class="med-tag med-mental">Mental Health</span>
+        </div>
+        <div class="sku-best-pos">
+          <div class="best-pos-label">Best Medical Positions</div>
+          <div class="best-pos-item"><span class="pos-num">1.</span> Chronic / Cancer Pain <span class="pos-score">0.40</span></div>
+          <div class="best-pos-item"><span class="pos-num">2.</span> Migraine <span class="pos-score">0.39</span></div>
+          <div class="best-pos-item"><span class="pos-num">3.</span> PTSD <span class="pos-score">0.34</span></div>
+        </div>
+        <button class="btn-detail" onclick="openModal('tropical')">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+          View Full Detail
+        </button>
+      </div>
+
+      <!-- PRIZEFIGHTER -->
+      <div class="sku-card" data-ind="anxiety" data-tier="value">
+        <div class="sku-top-row">
+          <span class="sku-ind ind-anxiety">Pain Management</span>
+          <span class="sku-morph">Indica Dominant</span>
+        </div>
+        <div class="sku-name">Prizefighter</div>
+        <div class="thc-wrap">
+          <div class="thc-label">THC / CBD</div>
+          <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:65%"></div></div>
+          <div class="thc-row">
+            <span class="thc-val">19.61%</span>
+            <span class="cbd-val">CBD 0.83%</span>
+          </div>
+        </div>
+        <div class="sku-med-cats">
+          <span class="med-tag med-pain">Pain Management</span>
+          <span class="med-tag med-mental">Mental Health</span>
+        </div>
+        <div class="sku-best-pos">
+          <div class="best-pos-label">Best Medical Positions</div>
+          <div class="best-pos-item"><span class="pos-num">1.</span> Migraine <span class="pos-score">0.66</span></div>
+          <div class="best-pos-item"><span class="pos-num">2.</span> Anxiety <span class="pos-score">0.64</span></div>
+          <div class="best-pos-item"><span class="pos-num">3.</span> Chronic / Cancer Pain <span class="pos-score">0.63</span></div>
+        </div>
+        <button class="btn-detail" onclick="openModal('prize')">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+          View Full Detail
+        </button>
+      </div>
+
+      <!-- DA FUNK -->
+      <div class="sku-card" data-ind="depression" data-tier="value">
+        <div class="sku-top-row">
+          <span class="sku-ind ind-depression">Mental Health</span>
+          <span class="sku-morph">Indica Dominant</span>
+        </div>
+        <div class="sku-name">Da Funk</div>
+        <div class="thc-wrap">
+          <div class="thc-label">THC / CBD</div>
+          <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:70%"></div></div>
+          <div class="thc-row">
+            <span class="thc-val">21.20%</span>
+            <span class="cbd-val">CBD 0.22%</span>
+          </div>
+        </div>
+        <div class="sku-med-cats">
+          <span class="med-tag med-mental">Mental Health</span>
+          <span class="med-tag med-neuro">Neurological Disorders</span>
+        </div>
+        <div class="sku-best-pos">
+          <div class="best-pos-label">Best Medical Positions</div>
+          <div class="best-pos-item"><span class="pos-num">1.</span> Depression <span class="pos-score">0.36</span></div>
+          <div class="best-pos-item"><span class="pos-num">2.</span> ADHD <span class="pos-score">0.30</span></div>
+          <div class="best-pos-item"><span class="pos-num">3.</span> Anxiety <span class="pos-score">0.22</span></div>
+        </div>
+        <button class="btn-detail" onclick="openModal('dafunk')">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+          View Full Detail
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Bundle -->
+    <div class="bundle-wrap">
+      <div class="bundle-title">Recommended Opening Bundle</div>
+      <div class="bundle-sub">Three SKUs covering the highest-value indications in the Australian medical cannabis market — a clinically defensible formulary from day one.</div>
+      <div class="bundle-items">
+        <div class="bundle-item">
+          <div class="bundle-ind">Pain Management</div>
+          <div class="bundle-sku-name">Tropical Blues</div>
+          <div class="bundle-thc">27.23% THC · 0.20% CBD · Sativa Dominant</div>
+        </div>
+        <div class="bundle-item">
+          <div class="bundle-ind">Anxiety / Migraine</div>
+          <div class="bundle-sku-name">Prizefighter</div>
+          <div class="bundle-thc">19.61% THC · 0.83% CBD · Hybrid</div>
+        </div>
+        <div class="bundle-item">
+          <div class="bundle-ind">Mental Health</div>
+          <div class="bundle-sku-name">Da Funk</div>
+          <div class="bundle-thc">21.20% THC · 0.22% CBD · Indica Dominant</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:28px;width:28px;object-fit:contain;">
+        <span class="footer-logo-text">Thai Stick</span>
+      </div>
+      <div class="footer-creds">
+        <span class="footer-cred">GMP-Certified · Perth WA</span>
+        <span class="footer-cred">TGO93 Full Goods Release</span>
+        <span class="footer-cred">COA Every Batch</span>
+        <span class="footer-cred">Licensed Medical Cannabis Supplier</span>
+      </div>
+      <div class="footer-copy">© 2026 Thai Stick Co., Ltd · Confidential B2B Supply</div>
+    </div>
+  </div>
+</footer>
+
+<!-- IMAGE LIGHTBOX -->
+<div class="img-lightbox" id="img-lightbox" onclick="closeImgLightbox()">
+  <img src="" alt="Product photo enlarged">
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- ENQUIRY MODAL -->
+<div class="modal-overlay" id="enquiry-overlay" onclick="closeEnquiryOutside(event)">
+  <div class="modal log-modal">
+    <button class="log-close-btn" onclick="closeEnquiryModal()">✕</button>
+    <div class="log-modal-title">Enquiry</div>
+    <form id="enquiry-form" onsubmit="submitEnquiry(event)">
+      <div class="log-form-grid">
+        <div class="log-field">
+          <label class="form-label">First Name *</label>
+          <input class="form-input" name="first_name" required>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Last Name *</label>
+          <input class="form-input" name="last_name" required>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Company *</label>
+          <input class="form-input" name="company" required>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Email *</label>
+          <input class="form-input" type="email" name="email" required>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Phone Number *</label>
+          <input class="form-input" name="phone" required>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Arrange Meeting (optional)</label>
+          <input class="form-input" type="date" name="meeting_date">
+        </div>
+      </div>
+      <div class="log-field" style="margin-top:16px;">
+        <label class="form-label">Message *</label>
+        <textarea class="form-textarea" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit" id="enquiry-submit-btn" style="margin-top:24px;">Submit ✉</button>
+    </form>
+  </div>
+</div>
+
+<!-- LOG VISIT BUTTON -->
+<button class="log-visit-fab" onclick="openLogModal()">
+  <span class="fab-icon">+</span>
+  <span class="fab-label">Log Visit</span>
+</button>
+
+<!-- LOG VISIT MODAL -->
+<div class="modal-overlay" id="log-overlay" onclick="closeLogOutside(event)">
+  <div class="modal log-modal">
+    <button class="log-close-btn" onclick="closeLogModal()">✕</button>
+    <div class="log-modal-title">Log Client Visit</div>
+    <form id="log-form" onsubmit="submitLog(event)">
+      <div class="log-form-grid">
+        <div class="log-field">
+          <label class="form-label">Your Name (Rep)</label>
+          <input class="form-input" name="rep_name" required placeholder="e.g. James">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Clinic / Pharmacy Name</label>
+          <input class="form-input" name="clinic_name" required placeholder="e.g. Perth Wellness Clinic">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Contact Name</label>
+          <input class="form-input" name="contact_name" placeholder="e.g. Dr. Sarah Lee">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" name="email" placeholder="e.g. s.lee@clinic.com">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Contact Number</label>
+          <input class="form-input" name="contact_number" placeholder="e.g. 0412 000 111">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Outcome</label>
+          <select class="form-select" name="outcome">
+            <option value="">Select outcome</option>
+            <option>Follow up</option>
+            <option>Pending approval</option>
+            <option>Sample requested</option>
+            <option>Agreement sent</option>
+            <option>Not interested</option>
+          </select>
+        </div>
+        <div class="log-field">
+          <label class="form-label">Next Meeting Date</label>
+          <input class="form-input" type="date" name="next_meeting_date">
+        </div>
+        <div class="log-field">
+          <label class="form-label">Next Meeting Time</label>
+          <input class="form-input" type="time" name="next_meeting_time">
+        </div>
+      </div>
+      <div class="log-field" style="margin-top:16px;">
+        <label class="form-label">Interested SKUs</label>
+        <div class="sku-check-grid" id="sku-check-container">
+          <div style="color:var(--muted);font-size:12px;grid-column:1/-1;">Loading SKUs…</div>
+        </div>
+        <div id="sku-limit-msg" style="display:none;font-size:11px;color:var(--amber);margin-top:6px;">Max 3 SKUs selected</div>
+      </div>
+      <div class="log-field" style="margin-top:16px;">
+        <label class="form-label">Notes</label>
+        <textarea class="form-textarea" name="notes" placeholder="Meeting notes, objections raised, key discussion points..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit" id="log-submit-btn" style="margin-top:24px;">Save Visit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzha6ED7R4JqAXq0AqoBk1bndu0hJwDbyBrzJQawB093HvwGZT7fUQZ9cP7JzYGpPucEA/exec';
+let portfolioData = [];
+
+function fetchSheet(sheetName) {
+  return new Promise((resolve, reject) => {
+    const cb = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    window[cb] = (data) => { delete window[cb]; document.head.removeChild(script); resolve(data); };
+    script.src = `${APPS_SCRIPT_URL}?sheet=${sheetName}&callback=${cb}`;
+    script.onerror = () => { delete window[cb]; reject(new Error('Failed')); };
+    document.head.appendChild(script);
+  });
+}
+
+function driveUrl(url) {
+  if (!url) return '';
+  const m = url.match(/\/d\/([^/?]+)/);
+  return m ? `https://lh3.googleusercontent.com/d/${m[1]}` : url;
+}
+function photoHtml(url) {
+  const src = driveUrl(url);
+  if (src) return `<img src="${src}" alt="Product photo" onclick="openImgLightbox('${src}')" onerror="this.parentElement.innerHTML=placeholderPhoto()">`;
+  return placeholderPhoto();
+}
+function openImgLightbox(src) {
+  const lb = document.getElementById('img-lightbox');
+  lb.querySelector('img').src = src;
+  lb.style.display = 'flex';
+}
+function closeImgLightbox() {
+  document.getElementById('img-lightbox').style.display = 'none';
+}
+function placeholderPhoto() {
+  return `<div class="modal-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Photo</span></div>`;
+}
+function qrHtml(url, coaUrl) {
+  const src = driveUrl(url);
+  const href = coaUrl || '';
+  const img = src
+    ? `<img src="${src}" alt="COA QR Code" onerror="this.parentElement.innerHTML=placeholderQr()">`
+    : placeholderQr();
+  return href
+    ? `<a href="${href}" target="_blank" rel="noopener" title="Open COA PDF" style="display:block;width:100%;height:100%;">${img}</a>`
+    : img;
+}
+function placeholderQr() {
+  return `<div class="modal-qr-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="5" y="5" width="3" height="3" fill="currentColor"/><rect x="16" y="5" width="3" height="3" fill="currentColor"/><rect x="5" y="16" width="3" height="3" fill="currentColor"/></svg><span>QR Code</span></div>`;
+}
+
+let currentPortfolioTier = 'value';
+let currentPortfolioInd = 'all';
+
+function applyFilters() {
+  document.querySelectorAll('.sku-card').forEach(card => {
+    const wrongTier = (card.dataset.tier || 'value') !== currentPortfolioTier;
+    const wrongInd = currentPortfolioInd !== 'all' && card.dataset.ind !== currentPortfolioInd;
+    card.classList.toggle('hidden', wrongTier || wrongInd);
+  });
+}
+function filterPortfolioTier(tier, btn) {
+  currentPortfolioTier = tier;
+  document.querySelectorAll('#portfolio-tier-tabs .tier-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  applyFilters();
+}
+function filterSKU(ind, btn) {
+  currentPortfolioInd = ind;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+const skuData = {
+  trop: {
+    name: 'Trop Cherry BX1', ind: 'Sleep', indClass: 'ind-sleep',
+    thc: '16.59%', cbd: '0.77%',
+    terpenes: [
+      { name: 'Myrcene', effect: 'Sedating · muscle relaxation' },
+      { name: 'Caryophyllene', effect: 'Anti-inflammatory · calming' },
+      { name: 'Linalool', effect: 'Anxiolytic · sleep promotion' },
+    ],
+    indications: [
+      { primary: 'Primary — Sleep Disorders', detail: 'Insomnia, difficulty maintaining sleep, disrupted sleep architecture' },
+      { primary: 'Secondary — Anxiety (sleep-related)', detail: 'Anxiety-driven sleep disruption and hyperarousal' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients presenting with primary insomnia or sleep maintenance difficulties. Suitable for evening use.',
+  },
+  runtz: {
+    name: 'Runtz Mints', ind: 'Pain', indClass: 'ind-pain',
+    thc: '19.57%', cbd: '0.82%',
+    terpenes: [
+      { name: 'Limonene', effect: 'Analgesic · mood elevation' },
+      { name: 'Myrcene', effect: 'Analgesic · anti-inflammatory' },
+      { name: 'Pinene', effect: 'Anti-inflammatory · alertness' },
+    ],
+    indications: [
+      { primary: 'Primary — Acute and Chronic Pain', detail: 'Nociceptive and neuropathic pain presentations' },
+      { primary: 'Secondary — Inflammation', detail: 'Inflammatory pain conditions and musculoskeletal presentations' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with moderate to severe pain presentations. Suitable for daytime or evening use depending on patient tolerance.',
+  },
+  maui: {
+    name: 'Maui Wowie 2.0', ind: 'Chronic Pain', indClass: 'ind-pain',
+    thc: '19.12%', cbd: '0.77%',
+    terpenes: [
+      { name: 'Terpinolene', effect: 'Analgesic · uplifting' },
+      { name: 'Ocimene', effect: 'Anti-inflammatory · decongestant' },
+      { name: 'Myrcene', effect: 'Sedating · analgesic' },
+    ],
+    indications: [
+      { primary: 'Primary — Chronic Pain', detail: 'Persistent and long-duration pain conditions requiring ongoing management' },
+      { primary: 'Secondary — Neuropathic Pain', detail: 'Nerve-related pain presentations and conditions' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with long-standing chronic pain who require consistent, sustained relief with daytime functionality maintained.',
+  },
+  prize: {
+    name: 'Prizefighter', ind: 'Anxiety', indClass: 'ind-anxiety',
+    thc: '19.61%', cbd: '0.83%',
+    terpenes: [
+      { name: 'Caryophyllene', effect: 'Anxiolytic · anti-inflammatory' },
+      { name: 'Linalool', effect: 'Calming · stress reduction' },
+      { name: 'Limonene', effect: 'Mood elevation · anti-anxiety' },
+    ],
+    indications: [
+      { primary: 'Primary — Generalised Anxiety', detail: 'GAD, social anxiety, and stress-related anxiety presentations' },
+      { primary: 'Secondary — PTSD', detail: 'Anxiety and hyperarousal components of PTSD presentations' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with anxiety-spectrum presentations. Anxiolytic terpene profile supports daytime use without excessive sedation.',
+  },
+  dafunk: {
+    name: 'Da Funk', ind: 'Depression / ADHD', indClass: 'ind-depression',
+    thc: '21.20%', cbd: '0.22%',
+    terpenes: [
+      { name: 'Limonene', effect: 'Antidepressant · mood elevation' },
+      { name: 'Terpinolene', effect: 'Uplifting · focus support' },
+      { name: 'Ocimene', effect: 'Energising · anti-fatigue' },
+    ],
+    indications: [
+      { primary: 'Primary — Depression', detail: 'MDD and depressive episodes, low mood, and anhedonia presentations' },
+      { primary: 'Secondary — ADHD', detail: 'Attention-related presentations and executive function difficulties' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Patients with depressive or attention-related presentations. Uplifting terpene profile supports daytime use and functional improvement.',
+  },
+  tropical: {
+    name: 'Tropical Blues', ind: 'Highest THC · Premium', indClass: 'ind-premium',
+    thc: '27.23%', cbd: '0.20%',
+    terpenes: [
+      { name: 'Myrcene', effect: 'Potency amplification · sedating' },
+      { name: 'Caryophyllene', effect: 'Anti-inflammatory · analgesic' },
+      { name: 'Limonene', effect: 'Mood modulation · anti-anxiety' },
+    ],
+    indications: [
+      { primary: 'Primary — Treatment-Resistant Presentations', detail: 'Patients who have not responded adequately to lower-potency products' },
+      { primary: 'Secondary — High-Tolerance Patients', detail: 'Established medicinal cannabis patients with documented tolerance' },
+    ],
+    coa: ['Potency — PASS', 'Microbiology — PASS', 'Pesticides — PASS', 'Heavy Metals — PASS', 'Residual Solvents — PASS', 'Irradiation — Confirmed'],
+    patient: 'Experienced medicinal cannabis patients with demonstrated tolerance. Prescriber assessment recommended. Highest THC product in the Thai Stick portfolio.',
+  },
+};
+
+function openModal(id) {
+  const d = skuData[id];
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-ind"><span class="sku-ind ${d.indClass}">${d.ind}</span></div>
+        <div class="modal-name">${d.name}</div>
+      </div>
+      <div class="modal-photo">${photoHtml(d.image || '')}</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Potency Profile</div>
+        <div class="modal-potency">
+          <div class="potency-item"><div class="potency-label">THC</div><div class="potency-val">${d.thc}</div></div>
+          <div class="potency-item"><div class="potency-label">CBD</div><div class="potency-val">${d.cbd}</div></div>
+        </div>
+        <div class="thc-bar-bg" style="margin-top:8px;"><div class="thc-bar-fill" style="width:${parseFloat(d.thc)/30*100}%"></div></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Terpene Profile</div>
+        <div class="terpene-list">
+          ${d.terpenes.map(t => `<div class="terpene-row"><span class="terpene-name">${t.name}</span><span class="terpene-effect">${t.effect}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Clinical Indication Breakdown</div>
+        <div class="indication-list">
+          ${d.indications.map(i => `<div class="indication-item"><strong>${i.primary}</strong>${i.detail}</div>`).join('')}
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">COA Summary — TGO93 Release</div>
+        <div class="coa-grid">
+          ${d.coa.map(c => `<div class="coa-item"><div class="coa-pass"></div><span class="coa-label">${c}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Recommended Patient Profile</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;">${d.patient}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">COA QR Code</div>
+        <div class="modal-qr-wrap">
+          <div class="modal-qr-img" style="${d.coa ? 'cursor:pointer;' : ''}">${qrHtml(d.qr || '', d.coa || '')}</div>
+          <p class="modal-qr-note">Scan or <strong>${d.coa ? `<a href="${d.coa}" target="_blank" rel="noopener" style="color:var(--teal);">click to open COA PDF ↗</a>` : 'click to open COA PDF'}</strong>. Updated each TGO93 release.</p>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+let skusLoaded = false;
+function openLogModal() {
+  document.getElementById('log-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (!skusLoaded) { skusLoaded = true; loadSKUs(); }
+}
+function closeLogModal() {
+  document.getElementById('log-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLogOutside(e) {
+  if (e.target === document.getElementById('log-overlay')) closeLogModal();
+}
+
+async function submitLog(e) {
+  e.preventDefault();
+  const form = document.getElementById('log-form');
+  const btn = document.getElementById('log-submit-btn');
+  const skus = [...document.querySelectorAll('.sku-check:checked')].map(c => c.value).join(', ');
+  const data = {
+    rep_name: form.rep_name.value, clinic_name: form.clinic_name.value,
+    contact_name: form.contact_name.value, email: form.email.value,
+    contact_number: form.contact_number.value, interested_sku: skus,
+    next_meeting_date: form.next_meeting_date.value, next_meeting_time: form.next_meeting_time.value,
+    notes: form.notes.value, outcome: form.outcome.value,
+  };
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  try {
+    await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    form.reset();
+    document.querySelectorAll('.sku-check').forEach(c => { c.checked = false; c.disabled = false; });
+    document.getElementById('sku-limit-msg').style.display = 'none';
+    btn.textContent = 'Saved ✓';
+    setTimeout(() => { closeLogModal(); btn.textContent = 'Save Visit'; btn.disabled = false; }, 1500);
+  } catch(err) { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
+}
+
+function openEnquiryModal() {
+  document.getElementById('enquiry-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeEnquiryModal() {
+  document.getElementById('enquiry-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeEnquiryOutside(e) {
+  if (e.target === document.getElementById('enquiry-overlay')) closeEnquiryModal();
+}
+async function submitEnquiry(e) {
+  e.preventDefault();
+  const form = document.getElementById('enquiry-form');
+  const btn = document.getElementById('enquiry-submit-btn');
+  const data = {
+    sheet: 'Enquiries',
+    first_name: form.first_name.value,
+    last_name: form.last_name.value,
+    company: form.company.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    message: form.message.value,
+    meeting_date: form.meeting_date.value,
+  };
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  try {
+    await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    form.reset();
+    btn.textContent = 'Sent ✓';
+    setTimeout(() => { closeEnquiryModal(); btn.textContent = 'Submit ✉'; btn.disabled = false; }, 1500);
+  } catch(err) { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
+}
+
+async function loadSKUs() {
+  const container = document.getElementById('sku-check-container');
+  if (!container) return;
+  let names = [];
+  try {
+    const skus = await fetchSheet('SKUs');
+    if (skus && !skus.error && skus.length) names = skus.map(s => s.name).filter(Boolean);
+  } catch(e) {}
+  if (!names.length) names = ['Trop Cherry BX1','Runtz Mints','Maui Wowie 2.0','Prizefighter','Da Funk','Tropical Blues'];
+  container.innerHTML = names.map(n => `
+    <label class="sku-check-item">
+      <input type="checkbox" class="sku-check" value="${n}" onchange="enforceSkuLimit()">
+      ${n}
+    </label>`).join('');
+}
+
+function enforceSkuLimit() {
+  const all = document.querySelectorAll('.sku-check');
+  const checked = [...all].filter(c => c.checked);
+  const msg = document.getElementById('sku-limit-msg');
+  if (checked.length >= 3) {
+    all.forEach(c => { if (!c.checked) c.disabled = true; });
+    if (msg) msg.style.display = 'block';
+  } else {
+    all.forEach(c => c.disabled = false);
+    if (msg) msg.style.display = 'none';
+  }
+}
+
+async function loadPortfolio() {
+  try {
+    const items = await fetchSheet('Portfolio');
+    if (!items || items.error || !items.length) return;
+    portfolioData = items;
+    const grid = document.querySelector('.sku-grid');
+    if (!grid) return;
+    grid.innerHTML = items.map((p, i) => {
+      const thc = parseFloat(p.thc).toFixed(2);
+      const cbd = parseFloat(p.cbd).toFixed(2);
+      const barW = Math.round(parseFloat(p.thc) / 30 * 100);
+      const tags = p.med_tags ? p.med_tags.split(';').map(t => {
+        const v = t.trim();
+        const cls = v.toLowerCase().includes('sleep') ? 'med-sleep'
+                  : v.toLowerCase().includes('pain') ? 'med-pain'
+                  : v.toLowerCase().includes('neuro') ? 'med-neuro' : 'med-mental';
+        return `<span class="med-tag ${cls}">${v}</span>`;
+      }).join('') : '';
+      return `
+        <div class="sku-card" data-ind="${p.filter_ind}" data-tier="${(p.tier || 'value').toLowerCase()}">
+          <div class="sku-top-row">
+            <span class="sku-ind ${p.ind_class}">${p.indication}</span>
+            <span class="sku-morph">${p.morphology}</span>
+          </div>
+          <div class="sku-name">${p.name}</div>
+          <div class="thc-wrap">
+            <div class="thc-label">THC / CBD</div>
+            <div class="thc-bar-bg"><div class="thc-bar-fill" style="width:${barW}%"></div></div>
+            <div class="thc-row">
+              <span class="thc-val">${thc}%</span>
+              <span class="cbd-val">CBD ${cbd}%</span>
+            </div>
+          </div>
+          <div class="sku-med-cats">${tags}</div>
+          <div class="sku-best-pos">
+            <div class="best-pos-label">Best Medical Positions</div>
+            <div class="best-pos-item"><span class="pos-num">1.</span> ${p.pos1_name} <span class="pos-score">${p.pos1_score}</span></div>
+            <div class="best-pos-item"><span class="pos-num">2.</span> ${p.pos2_name} <span class="pos-score">${p.pos2_score}</span></div>
+            <div class="best-pos-item"><span class="pos-num">3.</span> ${p.pos3_name} <span class="pos-score">${p.pos3_score}</span></div>
+          </div>
+          <button class="btn-detail" onclick="openModalFromPortfolio(${i})">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="4" y1="6" x2="8" y2="6"/></svg>
+            View Full Detail
+          </button>
+        </div>`;
+    }).join('');
+  } catch(e) { console.warn('Could not load portfolio:', e); }
+}
+
+function openModalFromPortfolio(idx) {
+  const p = portfolioData[idx];
+  if (!p) return;
+  const thc = parseFloat(p.thc).toFixed(2);
+  const cbd = parseFloat(p.cbd).toFixed(2);
+  const barW = Math.round(parseFloat(p.thc) / 30 * 100);
+  const coa = ['Potency — PASS','Microbiology — PASS','Pesticides — PASS','Heavy Metals — PASS','Residual Solvents — PASS','Irradiation — Confirmed'];
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-ind"><span class="sku-ind ${p.ind_class}">${p.indication}</span></div>
+        <div class="modal-name">${p.name}</div>
+      </div>
+      <div class="modal-photo">${photoHtml(p.image_url || '')}</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Potency Profile</div>
+        <div class="modal-potency">
+          <div class="potency-item"><div class="potency-label">THC</div><div class="potency-val">${thc}%</div></div>
+          <div class="potency-item"><div class="potency-label">CBD</div><div class="potency-val">${cbd}%</div></div>
+        </div>
+        <div class="thc-bar-bg" style="margin-top:8px;"><div class="thc-bar-fill" style="width:${barW}%"></div></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Terpene Profile</div>
+        <div class="terpene-list">
+          <div class="terpene-row"><span class="terpene-name">${p.terpene1_name}</span><span class="terpene-effect">${p.terpene1_effect}</span></div>
+          <div class="terpene-row"><span class="terpene-name">${p.terpene2_name}</span><span class="terpene-effect">${p.terpene2_effect}</span></div>
+          <div class="terpene-row"><span class="terpene-name">${p.terpene3_name}</span><span class="terpene-effect">${p.terpene3_effect}</span></div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Clinical Indication Breakdown</div>
+        <div class="indication-list">
+          <div class="indication-item"><strong>${p.indication1_primary}</strong>${p.indication1_detail}</div>
+          <div class="indication-item"><strong>${p.indication2_primary}</strong>${p.indication2_detail}</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">COA Summary — TGO93 Release</div>
+        <div class="coa-grid">${coa.map(c => `<div class="coa-item"><div class="coa-pass"></div><span class="coa-label">${c}</span></div>`).join('')}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Recommended Patient Profile</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;">${p.patient_profile}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">COA QR Code</div>
+        <div class="modal-qr-wrap">
+          <div class="modal-qr-img" style="${p.coa_url ? 'cursor:pointer;' : ''}">${qrHtml(p.qr_url || '', p.coa_url || '')}</div>
+          <p class="modal-qr-note">Scan or <strong>${p.coa_url ? `<a href="${p.coa_url}" target="_blank" rel="noopener" style="color:var(--teal);">click to open COA PDF ↗</a>` : 'click to open COA PDF'}</strong>. Updated each TGO93 release.</p>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+async function loadBundle() {
+  try {
+    const items = await fetchSheet('Bundle');
+    if (!items || items.error) return;
+    const wrap = document.querySelector('.bundle-items');
+    if (!wrap) return;
+    wrap.innerHTML = items.map(item => `
+      <div class="bundle-item">
+        <div class="bundle-ind">${item.indication}</div>
+        <div class="bundle-sku-name">${item.name}</div>
+        <div class="bundle-thc">${parseFloat(item.thc).toFixed(2)}% THC · ${parseFloat(item.cbd).toFixed(2)}% CBD · ${item.morphology}</div>
+      </div>`).join('');
+  } catch(e) { console.warn('Could not load bundle:', e); }
+}
+
+function toggleTierNav() {
+  document.getElementById('nav-tier-menu').classList.toggle('open');
+}
+function toggleMoreNav() {
+  document.getElementById('nav-more-menu').classList.toggle('open');
+}
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 ? 'rgba(10,14,20,0.97)' : 'rgba(10,14,20,0.85)';
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-more')) {
+    const m = document.getElementById('nav-more-menu');
+    if (m) m.classList.remove('open');
+  }
+  if (!e.target.closest('.nav-tier-pick')) {
+    const t = document.getElementById('nav-tier-menu');
+    if (t) t.classList.remove('open');
+  }
+  if (!e.target.closest('nav')) {
+    document.querySelector('nav').classList.remove('nav-open');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // Visitor access: hide team elements, show enquiry button
+  if (sessionStorage.getItem('access') === 'visitor') {
+    const navLinks = document.querySelector('.nav-links');
+    const navToggle = document.querySelector('.nav-toggle');
+    const logFab = document.querySelector('.log-visit-fab');
+    const navLogo = document.querySelector('.nav-logo');
+    const enquiryBtn = document.getElementById('enquiry-btn');
+    if (navLinks) navLinks.style.display = 'none';
+    if (navToggle) navToggle.style.display = 'none';
+    if (logFab) logFab.style.display = 'none';
+    if (navLogo) { navLogo.href = 'index.html'; }
+    if (enquiryBtn) enquiryBtn.style.display = 'block';
+  }
+  // Pre-fill rep name from session (set at login)
+  const repName = sessionStorage.getItem('rep_name');
+  if (repName) {
+    const repInput = document.querySelector('[name="rep_name"]');
+    if (repInput) repInput.value = repName;
+  }
+  await loadPortfolio();
+  loadBundle();
+  const tier = new URLSearchParams(window.location.search).get('tier') || 'value';
+  const btn = document.querySelector(`#portfolio-tier-tabs .tier-tab[data-tier="${tier}"]`);
+  filterPortfolioTier(tier, btn);
+});
+</script>
+</body>
+</html>
