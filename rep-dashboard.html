@@ -102,6 +102,12 @@ tbody td.notes-cell { max-width: 180px; overflow: hidden; text-overflow: ellipsi
 
 .empty-state { padding: 48px; text-align: center; color: var(--muted); font-size: 14px; }
 .loading-state { padding: 48px; text-align: center; color: var(--muted); font-size: 13px; }
+@media (max-width: 600px) {
+  .filter-input { width: 100% !important; box-sizing: border-box; }
+  .filter-input[type="date"] { width: 100% !important; }
+  .filter-group { width: calc(50% - 6px); }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
 </style>
 </head>
 <body>
