@@ -49,6 +49,15 @@
 .reg-input:focus { border-color: var(--teal); }
 .reg-back { background: none; border: none; color: var(--muted); font-size: 12px; cursor: pointer; margin-top: 14px; font-family: var(--font-body); transition: color 0.2s; }
 .reg-back:hover { color: var(--light); }
+
+@media (max-width: 900px) {
+  #hero { overflow-x: hidden; padding: 100px 0 60px; }
+  .hero-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .hero-title { font-size: clamp(32px, 8vw, 48px) !important; overflow-wrap: break-word; word-break: break-word; }
+  .hero-actions { flex-direction: column; gap: 12px; }
+  .btn-access { width: 100%; justify-content: center; box-sizing: border-box; }
+  .as-seen-in { margin-top: 32px; }
+}
 </style>
 </head>
 <body>
