@@ -105,7 +105,7 @@ nav {
    SECTIONS GENERAL
 ══════════════════════════════ */
 section { position: relative; }
-.container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 48px; width: 100%; box-sizing: border-box; }
 .section-label {
   font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--teal);
