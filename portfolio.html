@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -655,6 +656,7 @@ function openModal(id) {
     </div>`;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (top6.length) renderTerpeneChart(top6);
 }
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
@@ -813,6 +815,47 @@ async function loadPortfolio() {
   } catch(e) { console.warn('Could not load portfolio:', e); }
 }
 
+const TERPENE_COLS = ['Myrcene','Linalool','β-Caryophyllene','d-Limonene','α-Pinene','Humulene','Nerolidol','Ocimene','Bisabolol','Guaiol'];
+
+function getTop6Terpenes(p) {
+  return TERPENE_COLS
+    .map(name => ({ name, value: parseFloat((p[name] || '').toString().replace('%','')) || 0 }))
+    .filter(t => t.value > 0)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 6);
+}
+
+function renderTerpeneChart(top6) {
+  const ctx = document.getElementById('terpene-radar');
+  if (!ctx || !top6.length) return;
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: top6.map(t => t.name),
+      datasets: [{
+        data: top6.map(t => t.value),
+        backgroundColor: 'rgba(11,168,150,0.15)',
+        borderColor: 'rgba(11,168,150,0.85)',
+        pointBackgroundColor: '#0BA896',
+        pointBorderColor: '#fff',
+        pointRadius: 4,
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      scales: {
+        r: {
+          grid: { color: 'rgba(255,255,255,0.08)' },
+          angleLines: { color: 'rgba(255,255,255,0.08)' },
+          pointLabels: { color: 'rgba(255,255,255,0.65)', font: { size: 11, family: 'DM Sans' } },
+          ticks: { display: false, backdropColor: 'transparent' },
+        }
+      },
+      plugins: { legend: { display: false } },
+    }
+  });
+}
+
 function openModalFromPortfolio(idx) {
   const p = portfolioData[idx];
   if (!p) return;
@@ -820,6 +863,7 @@ function openModalFromPortfolio(idx) {
   const cbd = parseFloat(p.cbd).toFixed(2);
   const barW = Math.round(parseFloat(p.thc) / 30 * 100);
   const coa = ['Potency — PASS','Microbiology — PASS','Pesticides — PASS','Heavy Metals — PASS','Residual Solvents — PASS','Irradiation — Confirmed'];
+  const top6 = getTop6Terpenes(p);
   document.getElementById('modal-content').innerHTML = `
     <div class="modal-header">
       <div class="modal-header-left">
@@ -845,6 +889,7 @@ function openModalFromPortfolio(idx) {
           <div class="terpene-row"><span class="terpene-name">${p.terpene2_name}</span><span class="terpene-effect">${p.terpene2_effect}</span></div>
           <div class="terpene-row"><span class="terpene-name">${p.terpene3_name}</span><span class="terpene-effect">${p.terpene3_effect}</span></div>
         </div>
+        ${top6.length ? `<canvas id="terpene-radar" height="260" style="margin-top:20px;max-width:100%;"></canvas>` : ''}
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Clinical Indication Breakdown</div>
