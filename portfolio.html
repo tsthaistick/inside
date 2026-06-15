@@ -667,7 +667,7 @@ function openModal(id) {
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  setTimeout(() => tryRenderStaticChart(d.name), 350);
+  tryRenderStaticChart(d.name);
 }
 function closeModal() {
   pendingChartName = null;
