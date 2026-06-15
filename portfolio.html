@@ -869,7 +869,7 @@ function renderTerpeneChart(top6) {
           min: 0, max: 0.015,
         }
       },
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${(ctx.raw * 100).toFixed(2)}%` } } },
       responsive: false,
     }
   });
