@@ -443,13 +443,7 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5MgMVGfSmzttg
 let portfolioData = [];
 let pendingChartName = null;
 
-function tryRenderStaticChart(name, attempt) {
-  const canvas = document.getElementById('terpene-radar');
-  if (!canvas) return;
-  if (canvas.offsetWidth === 0) {
-    if ((attempt || 0) < 5) setTimeout(() => tryRenderStaticChart(name, (attempt || 0) + 1), 100);
-    return;
-  }
+function tryRenderStaticChart(name) {
   const arr = portfolioData || [];
   const row = arr.find(p => p.name && p.name.trim().toLowerCase() === name.trim().toLowerCase());
   const top6 = row ? getTop6Terpenes(row) : [];
@@ -670,9 +664,10 @@ function openModal(id) {
         </div>
       </div>
     </div>`;
-  document.getElementById('modal-overlay').classList.add('open');
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  setTimeout(() => tryRenderStaticChart(d.name), 250);
+  overlay.addEventListener('transitionend', () => tryRenderStaticChart(d.name), { once: true });
 }
 function closeModal() {
   pendingChartName = null;
