@@ -855,7 +855,7 @@ function renderTerpeneChart(top6) {
         borderColor: 'rgba(11,168,150,0.85)',
         pointBackgroundColor: '#0BA896',
         pointBorderColor: '#fff',
-        pointRadius: 4,
+        pointRadius: 2,
         borderWidth: 2,
       }]
     },
@@ -866,7 +866,7 @@ function renderTerpeneChart(top6) {
           angleLines: { color: 'rgba(255,255,255,0.08)' },
           pointLabels: { color: 'rgba(255,255,255,0.65)', font: { size: 9, family: 'DM Sans' } },
           ticks: { display: false, backdropColor: 'transparent' },
-          min: 0, max: 0.015,
+          min: 0,
         }
       },
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${(ctx.raw * 100).toFixed(2)}%` } } },
