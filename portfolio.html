@@ -442,6 +442,7 @@
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5MgMVGfSmzttgm6WQrpLWCC4WJNfrvgcF1URXqpSDndiFbUaHFsH_tv-wpIZOrs4rcQ/exec';
 let portfolioData = [];
 let pendingChartName = null;
+let chartInstance = null;
 
 function tryRenderStaticChart(name) {
   const arr = portfolioData || [];
@@ -667,7 +668,7 @@ function openModal(id) {
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  overlay.addEventListener('transitionend', () => tryRenderStaticChart(d.name), { once: true });
+  setTimeout(() => tryRenderStaticChart(d.name), 350);
 }
 function closeModal() {
   pendingChartName = null;
@@ -839,9 +840,10 @@ function getTop6Terpenes(p) {
 }
 
 function renderTerpeneChart(top6) {
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
   const ctx = document.getElementById('terpene-radar');
   if (!ctx || !top6.length) return;
-  new Chart(ctx, {
+  chartInstance = new Chart(ctx, {
     type: 'radar',
     data: {
       labels: top6.map(t => t.name),
