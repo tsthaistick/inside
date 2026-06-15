@@ -606,6 +606,13 @@ const skuData = {
 
 function openModal(id) {
   const d = skuData[id];
+  const arr = portfolioData || [];
+  let sheetRow = arr.find(p => p.name && p.name.trim() === d.name.trim());
+  if (!sheetRow) sheetRow = arr.find(p => p.name && p.name.trim().toLowerCase() === d.name.trim().toLowerCase());
+  console.log('[chart] portfolioData.length:', arr.length, '| target:', d.name, '| found row:', !!sheetRow);
+  if (sheetRow) console.log('[chart] row keys/terpene values:', Object.fromEntries(Object.entries(sheetRow).filter(([k]) => ['Myrcene','Linalool','β-Caryophyllene','d-Limonene','α-Pinene','Humulene','Nerolidol','Ocimene','Bisabolol','Guaiol'].includes(k))));
+  const top6 = sheetRow ? getTop6Terpenes(sheetRow) : [];
+  console.log('[chart] top6:', top6);
   document.getElementById('modal-content').innerHTML = `
     <div class="modal-header">
       <div class="modal-header-left">
@@ -629,6 +636,7 @@ function openModal(id) {
         <div class="terpene-list">
           ${d.terpenes.map(t => `<div class="terpene-row"><span class="terpene-name">${t.name}</span><span class="terpene-effect">${t.effect}</span></div>`).join('')}
         </div>
+        ${top6.length ? `<canvas id="terpene-radar" height="260" style="margin-top:20px;max-width:100%;"></canvas>` : ''}
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Clinical Indication Breakdown</div>
