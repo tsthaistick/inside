@@ -441,6 +441,14 @@
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5MgMVGfSmzttgm6WQrpLWCC4WJNfrvgcF1URXqpSDndiFbUaHFsH_tv-wpIZOrs4rcQ/exec';
 let portfolioData = [];
+let pendingChartName = null;
+
+function tryRenderStaticChart(name) {
+  const arr = portfolioData || [];
+  const row = arr.find(p => p.name && p.name.trim().toLowerCase() === name.trim().toLowerCase());
+  const top6 = row ? getTop6Terpenes(row) : [];
+  if (top6.length) renderTerpeneChart(top6);
+}
 
 function fetchSheet(sheetName) {
   return new Promise((resolve, reject) => {
@@ -606,13 +614,7 @@ const skuData = {
 
 function openModal(id) {
   const d = skuData[id];
-  const arr = portfolioData || [];
-  let sheetRow = arr.find(p => p.name && p.name.trim() === d.name.trim());
-  if (!sheetRow) sheetRow = arr.find(p => p.name && p.name.trim().toLowerCase() === d.name.trim().toLowerCase());
-  console.log('[chart] portfolioData.length:', arr.length, '| target:', d.name, '| found row:', !!sheetRow);
-  if (sheetRow) console.log('[chart] row keys/terpene values:', Object.fromEntries(Object.entries(sheetRow).filter(([k]) => ['Myrcene','Linalool','β-Caryophyllene','d-Limonene','α-Pinene','Humulene','Nerolidol','Ocimene','Bisabolol','Guaiol'].includes(k))));
-  const top6 = sheetRow ? getTop6Terpenes(sheetRow) : [];
-  console.log('[chart] top6:', top6);
+  pendingChartName = d.name;
   document.getElementById('modal-content').innerHTML = `
     <div class="modal-header">
       <div class="modal-header-left">
@@ -636,7 +638,7 @@ function openModal(id) {
         <div class="terpene-list">
           ${d.terpenes.map(t => `<div class="terpene-row"><span class="terpene-name">${t.name}</span><span class="terpene-effect">${t.effect}</span></div>`).join('')}
         </div>
-        ${top6.length ? `<canvas id="terpene-radar" height="260" style="margin-top:20px;max-width:100%;"></canvas>` : ''}
+        <canvas id="terpene-radar" height="260" style="margin-top:20px;max-width:100%;display:block;"></canvas>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Clinical Indication Breakdown</div>
@@ -664,9 +666,10 @@ function openModal(id) {
     </div>`;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (top6.length) renderTerpeneChart(top6);
+  tryRenderStaticChart(d.name);
 }
 function closeModal() {
+  pendingChartName = null;
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
@@ -779,6 +782,7 @@ async function loadPortfolio() {
     const items = await fetchSheet('Portfolio');
     if (!items || items.error || !items.length) return;
     portfolioData = items;
+    if (pendingChartName) tryRenderStaticChart(pendingChartName);
     const grid = document.querySelector('.sku-grid');
     if (!grid) return;
     grid.innerHTML = items.map((p, i) => {
