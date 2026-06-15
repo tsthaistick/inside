@@ -936,6 +936,7 @@ function openModalFromPortfolio(idx) {
     </div>`;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  if (top6.length) renderTerpeneChart(top6);
 }
 
 async function loadBundle() {
