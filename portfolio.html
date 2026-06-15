@@ -635,10 +635,12 @@ function openModal(id) {
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Terpene Profile</div>
-        <div class="terpene-list">
-          ${d.terpenes.map(t => `<div class="terpene-row"><span class="terpene-name">${t.name}</span><span class="terpene-effect">${t.effect}</span></div>`).join('')}
+        <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+          <div class="terpene-list" style="flex:1;min-width:180px;">
+            ${d.terpenes.map(t => `<div class="terpene-row"><span class="terpene-name">${t.name}</span><span class="terpene-effect">${t.effect}</span></div>`).join('')}
+          </div>
+          <canvas id="terpene-radar" width="220" height="220" style="flex-shrink:0;"></canvas>
         </div>
-        <canvas id="terpene-radar" height="260" style="margin-top:20px;max-width:100%;display:block;"></canvas>
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Clinical Indication Breakdown</div>
@@ -864,6 +866,7 @@ function renderTerpeneChart(top6) {
           angleLines: { color: 'rgba(255,255,255,0.08)' },
           pointLabels: { color: 'rgba(255,255,255,0.65)', font: { size: 11, family: 'DM Sans' } },
           ticks: { display: false, backdropColor: 'transparent' },
+          min: 0, max: 0.015,
         }
       },
       plugins: { legend: { display: false } },
@@ -900,12 +903,14 @@ function openModalFromPortfolio(idx) {
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Terpene Profile</div>
-        <div class="terpene-list">
-          <div class="terpene-row"><span class="terpene-name">${p.terpene1_name}</span><span class="terpene-effect">${p.terpene1_effect}</span></div>
-          <div class="terpene-row"><span class="terpene-name">${p.terpene2_name}</span><span class="terpene-effect">${p.terpene2_effect}</span></div>
-          <div class="terpene-row"><span class="terpene-name">${p.terpene3_name}</span><span class="terpene-effect">${p.terpene3_effect}</span></div>
+        <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+          <div class="terpene-list" style="flex:1;min-width:180px;">
+            <div class="terpene-row"><span class="terpene-name">${p.terpene1_name}</span><span class="terpene-effect">${p.terpene1_effect}</span></div>
+            <div class="terpene-row"><span class="terpene-name">${p.terpene2_name}</span><span class="terpene-effect">${p.terpene2_effect}</span></div>
+            <div class="terpene-row"><span class="terpene-name">${p.terpene3_name}</span><span class="terpene-effect">${p.terpene3_effect}</span></div>
+          </div>
+          ${top6.length ? `<canvas id="terpene-radar" width="220" height="220" style="flex-shrink:0;"></canvas>` : ''}
         </div>
-        ${top6.length ? `<canvas id="terpene-radar" height="260" style="margin-top:20px;max-width:100%;"></canvas>` : ''}
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Clinical Indication Breakdown</div>
