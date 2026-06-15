@@ -445,10 +445,8 @@ let pendingChartName = null;
 
 function tryRenderStaticChart(name) {
   const arr = portfolioData || [];
-  console.log('[chart] tryRender | name:', name, '| portfolioData.length:', arr.length);
   const row = arr.find(p => p.name && p.name.trim().toLowerCase() === name.trim().toLowerCase());
   const top6 = row ? getTop6Terpenes(row) : [];
-  console.log('[chart] row found:', !!row, '| top6.length:', top6.length);
   if (top6.length) renderTerpeneChart(top6);
 }
 
@@ -842,10 +840,8 @@ function getTop6Terpenes(p) {
 
 function renderTerpeneChart(top6) {
   const ctx = document.getElementById('terpene-radar');
-  console.log('[chart] renderTerpene | ctx:', !!ctx, '| top6.length:', top6.length, '| ctx.offsetWidth:', ctx?.offsetWidth);
   if (!ctx || !top6.length) return;
   const existing = Chart.getChart(ctx);
-  console.log('[chart] existing chart on canvas:', !!existing);
   if (existing) existing.destroy();
   new Chart(ctx, {
     type: 'radar',
