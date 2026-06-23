@@ -88,6 +88,13 @@ if (sessionStorage.getItem('role') !== 'admin') {
               <span class="cb-ref" style="min-width:auto;">g</span>
             </div>
           </div>
+          <div class="cb-row">
+            <div class="cb-row-label">Pallet capacity</div>
+            <div class="cb-row-input-wrap">
+              <input class="cb-input" id="cb-value-palletkg" type="number" step="1" value="80" oninput="calc('value')">
+              <span class="cb-ref" style="min-width:auto;">kg</span>
+            </div>
+          </div>
 
           <div class="cb-section">Wholesale Price to Buyer</div>
           <div class="cb-row">
@@ -108,26 +115,26 @@ if (sessionStorage.getItem('role') !== 'admin') {
             </div>
           </div>
           <div class="cb-row">
-            <div class="cb-row-label">Manufacturing</div>
+            <div class="cb-row-label">Manufacturing (per jar)</div>
             <div class="cb-row-input-wrap">
-              <input class="cb-input" id="cb-value-mfg" type="number" step="0.01" value="0.45" oninput="calc('value')">
-              <span class="cb-ref" id="cb-value-mfg-ref">$6.80/jar</span>
+              <input class="cb-input" id="cb-value-mfg" type="number" step="0.01" value="6.80" oninput="calc('value')">
+              <span class="cb-ref" id="cb-value-mfg-ref">$0.45/g</span>
             </div>
           </div>
           <div class="cb-row">
-            <div class="cb-row-label">Logistics (per jar)</div>
+            <div class="cb-row-label">Logistics (per pallet)</div>
             <div class="cb-row-input-wrap">
-              <input class="cb-input" id="cb-value-logistics" type="number" step="0.01" value="1.81" oninput="calc('value')">
-              <span class="cb-ref" id="cb-value-logistics-ref">$0.12/g</span>
+              <input class="cb-input" id="cb-value-logistics" type="number" step="0.01" value="9576.77" oninput="calc('value')">
             </div>
           </div>
+          <div class="cb-row"><div></div><div class="cb-ref" id="cb-value-logistics-ref">$1.81/jar · $0.12/g</div></div>
           <div class="cb-row">
-            <div class="cb-row-label">TGO93 testing (per jar)</div>
+            <div class="cb-row-label">TGO93 testing (per pallet)</div>
             <div class="cb-row-input-wrap">
-              <input class="cb-input" id="cb-value-testing" type="number" step="0.01" value="0.38" oninput="calc('value')">
-              <span class="cb-ref" id="cb-value-testing-ref">$0.03/g</span>
+              <input class="cb-input" id="cb-value-testing" type="number" step="0.01" value="1987.50" oninput="calc('value')">
             </div>
           </div>
+          <div class="cb-row"><div></div><div class="cb-ref" id="cb-value-testing-ref">$0.38/jar · $0.03/g</div></div>
           <div class="cb-row">
             <div class="cb-row-label">Packaging (per jar)</div>
             <div class="cb-row-input-wrap">
@@ -211,6 +218,13 @@ if (sessionStorage.getItem('role') !== 'admin') {
               <span class="cb-ref" style="min-width:auto;">g</span>
             </div>
           </div>
+          <div class="cb-row">
+            <div class="cb-row-label">Pallet capacity</div>
+            <div class="cb-row-input-wrap">
+              <input class="cb-input" id="cb-premium-palletkg" type="number" step="1" value="80" oninput="calc('premium')">
+              <span class="cb-ref" style="min-width:auto;">kg</span>
+            </div>
+          </div>
 
           <div class="cb-section">Wholesale Price to Buyer</div>
           <div class="cb-row">
@@ -231,26 +245,26 @@ if (sessionStorage.getItem('role') !== 'admin') {
             </div>
           </div>
           <div class="cb-row">
-            <div class="cb-row-label">Manufacturing</div>
+            <div class="cb-row-label">Manufacturing (per jar)</div>
             <div class="cb-row-input-wrap">
-              <input class="cb-input" id="cb-premium-mfg" type="number" step="0.01" value="0.50" oninput="calc('premium')">
-              <span class="cb-ref" id="cb-premium-mfg-ref">$7.50/jar</span>
+              <input class="cb-input" id="cb-premium-mfg" type="number" step="0.01" value="7.50" oninput="calc('premium')">
+              <span class="cb-ref" id="cb-premium-mfg-ref">$0.50/g</span>
             </div>
           </div>
           <div class="cb-row">
-            <div class="cb-row-label">Logistics (per jar)</div>
+            <div class="cb-row-label">Logistics (per pallet)</div>
             <div class="cb-row-input-wrap">
-              <input class="cb-input" id="cb-premium-logistics" type="number" step="0.01" value="1.81" oninput="calc('premium')">
-              <span class="cb-ref" id="cb-premium-logistics-ref">$0.12/g</span>
+              <input class="cb-input" id="cb-premium-logistics" type="number" step="0.01" value="9576.77" oninput="calc('premium')">
             </div>
           </div>
+          <div class="cb-row"><div></div><div class="cb-ref" id="cb-premium-logistics-ref">$1.81/jar · $0.12/g</div></div>
           <div class="cb-row">
-            <div class="cb-row-label">TGO93 testing (per jar)</div>
+            <div class="cb-row-label">TGO93 testing (per pallet)</div>
             <div class="cb-row-input-wrap">
-              <input class="cb-input" id="cb-premium-testing" type="number" step="0.01" value="0.38" oninput="calc('premium')">
-              <span class="cb-ref" id="cb-premium-testing-ref">$0.03/g</span>
+              <input class="cb-input" id="cb-premium-testing" type="number" step="0.01" value="1987.50" oninput="calc('premium')">
             </div>
           </div>
+          <div class="cb-row"><div></div><div class="cb-ref" id="cb-premium-testing-ref">$0.38/jar · $0.03/g</div></div>
           <div class="cb-row">
             <div class="cb-row-label">Packaging (per jar)</div>
             <div class="cb-row-input-wrap">
@@ -347,20 +361,23 @@ function calc(tier) {
   const f = n => '$' + (n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   const jar = v('jarsize') || 15;
+  const palletKg = v('palletkg') || 80;
   const wholesaleG = v('wholesale');
   const flowerG = v('flower');
-  const mfgG = v('mfg');
-  const logisticsJar = v('logistics');
-  const testingJar = v('testing');
+  const mfgJar = v('mfg');
+  const logisticsPallet = v('logistics');
+  const testingPallet = v('testing');
   const packagingJar = v('packaging');
   const distroPct = v('distropct');
   const rspJar = v('rsp');
   const pharmaJar = v('pharma');
   const doctorJar = v('doctor');
 
+  const jarsPerPallet = (palletKg * 1000) / jar;
   const wholesaleJar = wholesaleG * jar;
   const flowerJar = flowerG * jar;
-  const mfgJar = mfgG * jar;
+  const logisticsJar = logisticsPallet / jarsPerPallet;
+  const testingJar = testingPallet / jarsPerPallet;
   const totalCostJar = flowerJar + mfgJar + logisticsJar + testingJar + packagingJar;
   const totalCostG = totalCostJar / jar;
   const distroJar = wholesaleJar * (distroPct / 100);
@@ -371,9 +388,9 @@ function calc(tier) {
 
   set('wholesale-ref', `${f(wholesaleJar)}/jar`);
   set('flower-ref', `${f(flowerJar)}/jar`);
-  set('mfg-ref', `${f(mfgJar)}/jar`);
-  set('logistics-ref', `${f(logisticsJar / jar)}/g`);
-  set('testing-ref', `${f(testingJar / jar)}/g`);
+  set('mfg-ref', `${f(mfgJar / jar)}/g`);
+  set('logistics-ref', `${f(logisticsJar)}/jar · ${f(logisticsJar / jar)}/g`);
+  set('testing-ref', `${f(testingJar)}/jar · ${f(testingJar / jar)}/g`);
   set('packaging-ref', `${f(packagingJar / jar)}/g`);
   set('totalcost-g', `${f(totalCostG)}/g`);
   set('totalcost-jar', `(${f(totalCostJar)}/jar)`);

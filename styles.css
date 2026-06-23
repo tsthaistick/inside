@@ -1661,6 +1661,8 @@ footer {
 .cb-row-input-wrap { display: flex; align-items: center; gap: 8px; }
 .cb-input { width: 76px; background: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: var(--light); font-family: var(--font-mono); font-size: 13px; padding: 6px 8px; text-align: right; }
 .cb-input:focus { outline: none; border-color: var(--teal); }
+.cb-input::-webkit-outer-spin-button, .cb-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.cb-input[type=number] { -moz-appearance: textfield; }
 .cb-ref { font-size: 11px; color: var(--muted); font-family: var(--font-mono); min-width: 70px; text-align: right; }
 .cb-calc-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; font-size: 13px; }
 .cb-calc-label { color: var(--light); font-weight: 500; }
