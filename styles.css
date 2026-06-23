@@ -1672,3 +1672,15 @@ footer {
   .cb-grid { flex-direction: column; }
   .cb-input { width: 66px; }
 }
+
+/* ── ACCESS GATE ── */
+body.access-gated > *:not(.access-denied-screen) { display: none !important; }
+.access-denied-screen {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: var(--dark); flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 40px;
+}
+.access-denied-title { font-family: var(--font-disp); font-size: 32px; color: var(--light); margin-bottom: 12px; }
+.access-denied-sub { color: var(--muted); font-size: 14px; max-width: 400px; line-height: 1.6; }
+.access-denied-link { margin-top: 24px; color: var(--teal); font-size: 13px; text-decoration: none; }
+.access-denied-link:hover { opacity: 0.8; }

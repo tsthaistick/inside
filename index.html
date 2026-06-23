@@ -286,6 +286,7 @@ async function submitPin() {
     if (match) {
       sessionStorage.setItem('rep_name', match.name || '');
       sessionStorage.setItem('access', 'team');
+      sessionStorage.setItem('role', match.role || '');
       window.location.href = 'ThaiStick_Website.html';
     } else {
       err.classList.add('show');

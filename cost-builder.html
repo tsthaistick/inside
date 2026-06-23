@@ -11,6 +11,18 @@
 </head>
 <body>
 
+<div class="access-denied-screen" id="access-denied">
+  <div class="access-denied-title">Access Denied</div>
+  <p class="access-denied-sub">This page requires highest-level access. Contact your administrator if you believe this is a mistake.</p>
+  <a class="access-denied-link" href="ThaiStick_Website.html">← Back to Home</a>
+</div>
+<script>
+if (sessionStorage.getItem('role') !== 'admin') {
+  document.body.classList.add('access-gated');
+  document.getElementById('access-denied').style.display = 'flex';
+}
+</script>
+
 <nav>
   <a class="nav-logo" href="ThaiStick_Website.html">
     <img src="Thai Stick Logo.png" alt="Thai Stick" style="height:36px;width:36px;object-fit:contain;">
